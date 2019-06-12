@@ -142,7 +142,7 @@ class WPC_Admin {
 			'capability_type'    => 'post',
 			'hierarchical'       => false,
 			'menu_position'      => 5,
-			'menu_icon'          => 'dashicons-megaphone', // https://developer.wordpress.org/resource/dashicons/.
+			'menu_icon'          => 'dashicons-megaphone',
 			'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 		);
 		register_post_type( 'speaker', $args );
@@ -181,7 +181,7 @@ class WPC_Admin {
 			'capability_type'    => 'post',
 			'hierarchical'       => false,
 			'menu_position'      => 5,
-			'menu_icon'          => 'dashicons-pressthis', // https://developer.wordpress.org/resource/dashicons/.
+			'menu_icon'          => 'dashicons-pressthis',
 			'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 		);
 		register_post_type( 'place', $args );
@@ -220,7 +220,7 @@ class WPC_Admin {
 			'capability_type'    => 'post',
 			'hierarchical'       => false,
 			'menu_position'      => 5,
-			'menu_icon'          => 'dashicons-format-audio', // https://developer.wordpress.org/resource/dashicons/.
+			'menu_icon'          => 'dashicons-format-audio',
 			'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 		);
 		register_post_type( 'podcast', $args );
