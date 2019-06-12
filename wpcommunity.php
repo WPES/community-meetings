@@ -2,8 +2,8 @@
 /**
  * Plugin Name: WPCommunity
  * Plugin URI: https://wpgranada.es/wpcommunity/
- * Description: 
- * Author: wpgranada
+ * Description: All tools to organize a meetup.
+ * Author: davidperez
  * Author URI: https://wpgranada/
  * Version: 0.1
  * Text Domain: wpcommunity
@@ -18,4 +18,4 @@
 load_plugin_textdomain( 'wpcommunity', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 // * Includes Libraries for Closemarketing
-//require_once dirname( __FILE__ ) . '/includes/.php';
+require_once dirname( __FILE__ ) . '/includes/class-wpc-admin.php';

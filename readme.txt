@@ -1,5 +1,5 @@
 === WP Community ===
-Contributors: wpgranada
+Contributors: davidperez
 Tags: 
 Requires at least: 4.0
 Tested up to: 5.2.1
