@@ -18,6 +18,7 @@ WordPress installation and then activate the Plugin from Plugins page.
 
 == Developers ==
 [WPGranada](https://wpgranada.es/)
+[David Perez](https://en.davidperezgar.com/)
 
 == Changelog ==
 = 0.1 =
