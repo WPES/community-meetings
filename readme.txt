@@ -4,7 +4,7 @@ Tags:
 Requires at least: 4.0
 Tested up to: 5.2.1
 Stable tag: 0.1
-Version: 0.1
+Version: 0.1.1
 
 Plugin that creates all you need to organize a Web for a Meetup Organizers.
 
