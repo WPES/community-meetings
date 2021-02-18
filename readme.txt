@@ -1,12 +1,14 @@
-=== WP Community ===
-Contributors: davidperez
-Tags: 
-Requires at least: 4.0
-Tested up to: 5.2.1
+=== Community meetings ===
+Contributors: davidperez, webappdesign, frantorres
+Tags: meetings, community
+Requires at least: 4.5
+Tested up to: 5.6.1
 Stable tag: 0.1
-Version: 0.1.1
+Requires PHP: 7.2
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Plugin that creates all you need to organize a Web for a Meetup Organizers.
+Plugin that creates a mmeting content to fill it up and relate with speakers, sponsors and places.
 
 == Description ==
 
