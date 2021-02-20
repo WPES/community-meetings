@@ -1,4 +1,4 @@
-#=== Community meetings ===
+=== Community meetings ===
 Contributors: davidperez, webappdesign, frantorres
 Tags: meetings, community
 Requires at least: 4.5
@@ -8,24 +8,22 @@ Requires PHP: 7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Plugin that creates a mmeting content to fill it up and relate with speakers, sponsors and places.
+Plugin that creates a meeting content to fill it up and relate with speakers, sponsors and places.
 
-##== Description ==
+== Description ==
 
-##== Installation ==
-
+== Installation ==
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your
 WordPress installation and then activate the Plugin from Plugins page.
 
 
-##== Developers ==
+== Developers ==
 [WPGranada](https://wpgranada.es/)
 [David Perez](https://en.davidperezgar.com/)
 
-##== Changelog ==
-###= 0.1 =
+== Changelog ==
+= 0.1 =
 *   First released.
 
-##== Links ==
-
+== Links ==
 *   [WordPress Granada Community](https://wpgranada.es/)
