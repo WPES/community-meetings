@@ -1,8 +1,8 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
+
 class METGS_admin_cpt {
 
-    function __construct()
-    {
+    function __construct(){
 
     }
 
@@ -24,7 +24,7 @@ class METGS_admin_cpt {
         return $this->isCPTOK($post) && !$this->isAutoSave() && $this->hasPermissions($post_id);
     }
 
-    function isAutoSave() {
+    function isAutoSave(){
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
             return true;
         }

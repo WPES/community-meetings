@@ -1,20 +1,20 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
-class METGS_admin
-{
+class METGS_admin{
     var $class_prefix=METGS_PREFIX;
 
-    public function load() {
+    public function load(){
         $this->constants();
         $this->includes();
         $this->inits();
     }
 
-    private function constants() {
+    private function constants(){
 
     }
 
-    private function includes() {
+    private function includes(){
+
         //CPTs register, and their configuration.
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin_cpt.php';
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_cpt_meeting.php';
@@ -28,9 +28,11 @@ class METGS_admin
         //Custom options page on backend
         //require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin_optionsPage.php';
         //require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_optionsPage_meetings.php';
+
     }
 
     private function inits(){
+
         $cpt_meetings = new METGS_cpt_meeting();
         $cpt_meetings->initCPT();
 
@@ -43,5 +45,6 @@ class METGS_admin
 
         /*$optionsPage = new METGS_optionsPage_meetings();
         $optionsPage->init();*/
+        
     }
 }

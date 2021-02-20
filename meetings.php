@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 /**
  * Plugin Name: Community meetings
  * Plugin URI: https://wpgranada.es/
@@ -10,24 +10,20 @@
  * Domain Path: /languages
  * License: GNU General Public License version 3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
- *
  */
-
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-    die;
-}
 
 final class METGS_init {
 
     public $plugin_name = 'Community meetings';
     public $version = '0.1';
 
-    function __construct() {
-        add_action( 'plugins_loaded', array($this,'languages') );
+    function __construct(){
+
+        add_action( 'plugins_loaded', array( $this, 'languages' ) );
+
     }
 
-    public function load() {
+    public function load(){
         $this->pluginConstants();
         $this->contentConstants();
 
@@ -36,7 +32,8 @@ final class METGS_init {
         $this->inits();
     }
 
-    private function pluginConstants() {
+    private function pluginConstants(){
+
         // Plugin prefix
         if ( ! defined( 'METGS_PREFIX' ) ) {
             define( 'METGS_PREFIX', 'METGS' );
@@ -85,9 +82,11 @@ final class METGS_init {
         if ( ! defined( 'METGS_PLUGIN_FILE' ) ) {
             define( 'METGS_PLUGIN_FILE', __FILE__ );
         }
+
     }
 
     function contentConstants(){
+
         if ( ! defined('METGS_CPT_MEETING') ) {
             define( 'METGS_CPT_MEETING', 'metgs_meeting' );
         }
@@ -106,7 +105,7 @@ final class METGS_init {
 
     }
 
-    private function includes() {
+    private function includes(){
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin.php';
         //require_once METGS_PLUGIN_PUBLIC_DIR . 'METGS_public.php';
         //require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions.php';
@@ -123,20 +122,20 @@ final class METGS_init {
         $functions->load();*/
     }
 
-    function languages() {
+    function languages(){
         load_plugin_textdomain( 'metgs', false, basename( dirname( __FILE__ ) ) . '/languages' );
     }
 
 }
 
-function metgs_init() {
+function metgs_init(){
     $metgs = new METGS_init();
     $metgs->load();
 }
 metgs_init();
 
 //Plugin activation
-function METGS_activate() {
+function METGS_activate(){
     if ( ! get_option( 'metgs_flush_rewrite_rules_flag' ) ) {
         update_option( 'metgs_flush_rewrite_rules_flag', true, true );
     }
@@ -144,7 +143,7 @@ function METGS_activate() {
 register_activation_hook( __FILE__, 'METGS_activate' );
 
 add_action( 'init', 'metgs_flush_rewrite_rules_maybe', 50 );
-function metgs_flush_rewrite_rules_maybe() {
+function metgs_flush_rewrite_rules_maybe(){
     if ( get_option( 'metgs_flush_rewrite_rules_flag' ) ) {
         flush_rewrite_rules();
         update_option( 'metgs_flush_rewrite_rules_flag', false, true );
@@ -152,7 +151,7 @@ function metgs_flush_rewrite_rules_maybe() {
 }
 
 //Plugin deactivation
-function METGS_deactivate() {
+function METGS_deactivate(){
     delete_option('metgs_flush_rewrite_rules_flag');
 }
 register_deactivation_hook( __FILE__, 'METGS_deactivate' );

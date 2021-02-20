@@ -1,15 +1,12 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
-class METGS_admin_taxonomies
-{
+class METGS_admin_taxonomies{
 
-    function __construct()
-    {
+    function __construct(){
 
     }
 
-    public function initTaxonomies()
-    {
+    public function initTaxonomies(){
 
     }
 
@@ -39,8 +36,7 @@ class METGS_admin_taxonomies
         return $columns;
     }
 
-    function add_image_to_taxonomy_column_content( $content, $column_name, $term_id )
-    {
+    function add_image_to_taxonomy_column_content( $content, $column_name, $term_id ){
         $fieldkey = '_metgs_image';
         if ( $fieldkey == $column_name ) {
             $imgid = get_term_meta($term_id, $fieldkey, true);
@@ -59,7 +55,5 @@ class METGS_admin_taxonomies
             'hide_empty' => false,
         ) );
     }
+
 }
-
-
-

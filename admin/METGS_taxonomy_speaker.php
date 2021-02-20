@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
 class METGS_taxonomy_speaker extends METGS_admin_taxonomies
 {
@@ -6,20 +6,21 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
     public $taxonomy = METGS_TAX_SPEAKER;
     public $taxonomy_rewrite = 'speaker';
 
-    function __construct()
-    {
+    function __construct(){
 
     }
 
-    public function initTaxonomy()
-    {
+    public function initTaxonomy(){
+
       add_action( 'init', array($this,'taxonomy_register') );
+
       add_action( 'init', array($this,'add_taxonomy_metaboxes') );
 
       add_action( 'init', array($this,'add_taxonomy_columns') );
+
     }
 
-    function taxonomy_register() {
+    function taxonomy_register(){
         $labels = array(
             'name'              => __( 'Speakers', 'metgs' ),
             'singular_name'     => __( 'Speaker', 'metgs' ),
@@ -43,13 +44,13 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
         $args = $this->getStandardPublicTaxonomyArgs($labels);
         $args['hierarchical'] = false;
         $args['rewrite'] = $rewrite;
+
         register_taxonomy( $this->taxonomy, $this->cpt_meetings, $args );
+        
     }
 
     function add_taxonomy_metaboxes(){
         $prefix = '_metgs_';
     }
+
 }
-
-
-

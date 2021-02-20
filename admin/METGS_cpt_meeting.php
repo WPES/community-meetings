@@ -1,7 +1,6 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
-class METGS_cpt_meeting extends METGS_admin_cpt
-{
+class METGS_cpt_meeting extends METGS_admin_cpt {
 
     public $cpt = METGS_CPT_MEETING;
     public $rewrite = 'meeting';
@@ -9,16 +8,20 @@ class METGS_cpt_meeting extends METGS_admin_cpt
     public $taxonomy_sponsor = METGS_TAX_SPONSOR;
     public $taxonomy_place = METGS_TAX_PLACE;
 
-    function __construct() {
+    function __construct(){
 
     }
 
-    public function initCPT() {
+    public function initCPT(){
+
         add_action('init', array($this, 'cpt_register'));
+        
         add_action('init', array($this, 'add_cpt_metaboxes'));
+
     }
 
-    function cpt_register() {
+    function cpt_register(){
+
         $labels = array(
             'name'               => __( 'Meetups', 'metgs' ),
             'singular_name'      => __( 'Meetup', 'metgs' ),
@@ -32,12 +35,14 @@ class METGS_cpt_meeting extends METGS_admin_cpt
             'not_found_in_trash' => __( 'Not found in trash', 'metgs' ),
             'menu_name'          => __( 'Meetups', 'metgs' ),
         );
+
         $rewrite = array(
             'slug'                  => $this->rewrite,
             'with_front'            => true,
             'pages'                 => true,
             'feeds'                 => true,
         );
+
         $args = array(
             'labels'             => $labels,
             'public'             => true,
@@ -53,12 +58,13 @@ class METGS_cpt_meeting extends METGS_admin_cpt
             'menu_icon'          => 'dashicons-calendar-alt',
             'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
         );
+
         register_post_type($this->cpt, $args);
+        
     }
 
-    function add_cpt_metaboxes() {
+    function add_cpt_metaboxes(){
         $prefix = '_metgs_';
     }
-
 
 }
