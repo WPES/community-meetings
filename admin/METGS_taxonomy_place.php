@@ -1,25 +1,26 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
-class METGS_taxonomy_place extends METGS_admin_taxonomies
-{
+class METGS_taxonomy_place extends METGS_admin_taxonomies {
     public $cpt_meetings = METGS_CPT_MEETING;
     public $taxonomy = METGS_TAX_PLACE;
     public $taxonomy_rewrite = 'place';
 
-    function __construct()
-    {
+    function __construct(){
 
     }
 
-    public function initTaxonomy()
-    {
+    public function initTaxonomy(){
+
       add_action( 'init', array($this,'taxonomy_register') );
+
       add_action( 'init', array($this,'add_taxonomy_metaboxes') );
 
       add_action( 'init', array($this,'add_taxonomy_columns') );
+
     }
 
-    function taxonomy_register() {
+    function taxonomy_register(){
+
         $labels = array(
             'name'              => __( 'Places', 'metgs' ),
             'singular_name'     => __( 'Place', 'metgs' ),
@@ -43,7 +44,9 @@ class METGS_taxonomy_place extends METGS_admin_taxonomies
         $args = $this->getStandardPublicTaxonomyArgs($labels);
         $args['hierarchical'] = false;
         $args['rewrite'] = $rewrite;
+
         register_taxonomy( $this->taxonomy, $this->cpt_meetings, $args );
+        
     }
 
     function add_taxonomy_metaboxes(){
