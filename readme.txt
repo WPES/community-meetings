@@ -8,12 +8,11 @@ Requires PHP: 7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Plugin that creates a mmeting content to fill it up and relate with speakers, sponsors and places.
+Plugin that creates a meeting content to fill it up and relate with speakers, sponsors and places.
 
 == Description ==
 
 == Installation ==
-
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your
 WordPress installation and then activate the Plugin from Plugins page.
 
@@ -27,5 +26,4 @@ WordPress installation and then activate the Plugin from Plugins page.
 *   First released.
 
 == Links ==
-
 *   [WordPress Granada Community](https://wpgranada.es/)
