@@ -81,25 +81,29 @@ class METGS_functions_inputs
     function showDatetime(){
         $mainname = $this->name;
         $mainlabel = $this->label;
-        $mainvalue = $this->value;
+        if(isset($this->value)) {
+            $mainvalue = $this->value;
+        }
 
         $this->name=$mainname.'_date';
         $this->label=$mainlabel.' '.__('date');
-        if(!empty($this->value)) {
+        if(isset($mainvalue)) {
             $this->value = date('Y-m-d', $mainvalue);
         }
         $this->showInputHTML('date');
 
         $this->name=$mainname.'_time';
         $this->label=$mainlabel.' '.__('time', 'metgs');
-        if(!empty($this->value)) {
+        if(isset($mainvalue)) {
             $this->value = date('H:m', $mainvalue);
         }
         $this->showInputHTML('time');
 
         $this->name=$mainname;
         $this->label=$mainlabel;
-        $this->value=$mainvalue;
+        if(isset($mainvalue)) {
+            $this->value = $mainvalue;
+        }
     }
 
     function saveDatetime(){
