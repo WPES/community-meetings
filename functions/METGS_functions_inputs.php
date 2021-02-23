@@ -85,12 +85,16 @@ class METGS_functions_inputs
 
         $this->name=$mainname.'_date';
         $this->label=$mainlabel.' '.__('date');
-        $this->value=date('Y-m-d', $mainvalue);
+        if(!empty($this->value)) {
+            $this->value = date('Y-m-d', $mainvalue);
+        }
         $this->showInputHTML('date');
 
         $this->name=$mainname.'_time';
         $this->label=$mainlabel.' '.__('time', 'metgs');
-        $this->value=date('H:m', $mainvalue);
+        if(!empty($this->value)) {
+            $this->value = date('H:m', $mainvalue);
+        }
         $this->showInputHTML('time');
 
         $this->name=$mainname;
