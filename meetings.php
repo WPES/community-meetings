@@ -124,7 +124,7 @@ final class METGS_init {
     private function includes(){
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin.php';
         //require_once METGS_PLUGIN_PUBLIC_DIR . 'METGS_public.php';
-        //require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions.php';
+        require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions.php';
     }
 
     private function inits(){
@@ -132,10 +132,10 @@ final class METGS_init {
         $admin->load();
 
         /*$public = new METGS_public();
-        $public->load();
+        $public->load();*/
 
         $functions = new METGS_functions();
-        $functions->load();*/
+        $functions->load();
     }
 
     function languages(){
