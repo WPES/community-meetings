@@ -1,0 +1,272 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: metsg\n"
+"POT-Creation-Date: 2021-02-25 19:47+0100\n"
+"PO-Revision-Date: 2021-02-25 19:55+0100\n"
+"Last-Translator: David <david@closemarketing.es>\n"
+"Language-Team: David <david@closemarketing.es>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: admin/METGS_admin_taxonomies.php:35
+msgid "Image"
+msgstr "Imagen"
+
+#: admin/METGS_cpt_meeting.php:25 admin/METGS_cpt_meeting.php:35
+msgid "Meetups"
+msgstr "Meetups"
+
+#: admin/METGS_cpt_meeting.php:26
+msgid "Meetup"
+msgstr "Meetup"
+
+#: admin/METGS_cpt_meeting.php:27 admin/METGS_cpt_meeting.php:28
+msgid "Add New Meetup"
+msgstr "Añadir nuevo Meetup"
+
+#: admin/METGS_cpt_meeting.php:29
+msgid "Edit Meetup"
+msgstr "Editar Meetup"
+
+#: admin/METGS_cpt_meeting.php:30
+msgid "New Meetup"
+msgstr "Nueva Meetup"
+
+#: admin/METGS_cpt_meeting.php:31
+msgid "View Meetup"
+msgstr "Ver Meetup"
+
+#: admin/METGS_cpt_meeting.php:32
+msgid "Search Meetups"
+msgstr "Buscar Meetups"
+
+#: admin/METGS_cpt_meeting.php:33
+msgid "Not found"
+msgstr "Extraviado"
+
+#: admin/METGS_cpt_meeting.php:34
+msgid "Not found in trash"
+msgstr "No encontrado en la papelera"
+
+#: admin/METGS_cpt_meeting.php:68
+msgid "Meeting details"
+msgstr "Detalles de la reunión"
+
+#: admin/METGS_cpt_meeting.php:76
+msgid "Meeting start"
+msgstr "Inicio de la Meetup"
+
+#: admin/METGS_cpt_meeting.php:80
+msgid "Meetup event"
+msgstr "Evento de Meetup"
+
+#: admin/METGS_taxonomy_place.php:25 admin/METGS_taxonomy_place.php:35
+msgid "Places"
+msgstr "Lugares"
+
+#: admin/METGS_taxonomy_place.php:26
+msgid "Place"
+msgstr "Lugar"
+
+#: admin/METGS_taxonomy_place.php:27
+msgid "Search place"
+msgstr "Buscar ubicación"
+
+#: admin/METGS_taxonomy_place.php:28
+msgid "All places"
+msgstr "Todos las ubicaciones"
+
+#: admin/METGS_taxonomy_place.php:29
+msgid "Parent place"
+msgstr "Lugar superior"
+
+#: admin/METGS_taxonomy_place.php:30
+msgid "Parent place:"
+msgstr "Lugar superior:"
+
+#: admin/METGS_taxonomy_place.php:31
+msgid "Edit place"
+msgstr "Editar ubicación"
+
+#: admin/METGS_taxonomy_place.php:32
+msgid "Update place"
+msgstr "Actualizar ubicación"
+
+#: admin/METGS_taxonomy_place.php:33
+msgid "Add new place"
+msgstr "Añadir nueva ubicación"
+
+#: admin/METGS_taxonomy_place.php:34
+msgid "New place"
+msgstr "Nueva ubicación"
+
+#: admin/METGS_taxonomy_speaker.php:25 admin/METGS_taxonomy_speaker.php:35
+msgid "Speakers"
+msgstr "Ponentes"
+
+#: admin/METGS_taxonomy_speaker.php:26
+msgid "Speaker"
+msgstr "Ponente"
+
+#: admin/METGS_taxonomy_speaker.php:27
+msgid "Search speakers"
+msgstr "Buscar ponentes"
+
+#: admin/METGS_taxonomy_speaker.php:28
+msgid "All speakers"
+msgstr "Todos los ponentes"
+
+#: admin/METGS_taxonomy_speaker.php:29
+msgid "Parent speaker"
+msgstr "Ponente superior"
+
+#: admin/METGS_taxonomy_speaker.php:30
+msgid "Parent speaker:"
+msgstr "Ponente superior:"
+
+#: admin/METGS_taxonomy_speaker.php:31
+msgid "Edit speaker"
+msgstr "Editar ponente"
+
+#: admin/METGS_taxonomy_speaker.php:32
+msgid "Update speaker"
+msgstr "Actualizar ponente"
+
+#: admin/METGS_taxonomy_speaker.php:33
+msgid "Add new speaker"
+msgstr "Añadir nuevo ponente"
+
+#: admin/METGS_taxonomy_speaker.php:34
+msgid "New speaker"
+msgstr "Nuevo ponente"
+
+#: admin/METGS_taxonomy_sponsor.php:26 admin/METGS_taxonomy_sponsor.php:36
+msgid "Sponsors"
+msgstr "Patrocinadores"
+
+#: admin/METGS_taxonomy_sponsor.php:27
+msgid "Sponsor"
+msgstr "Patrocinador"
+
+#: admin/METGS_taxonomy_sponsor.php:28
+msgid "Search sponsor"
+msgstr "Buscar ponente"
+
+#: admin/METGS_taxonomy_sponsor.php:29
+msgid "All sponsors"
+msgstr "Todos los patrocinadores"
+
+#: admin/METGS_taxonomy_sponsor.php:30
+msgid "Parent sponsor"
+msgstr "Patrocinador de los padres"
+
+#: admin/METGS_taxonomy_sponsor.php:31
+msgid "Parent sponsor:"
+msgstr "Patrocinador superior:"
+
+#: admin/METGS_taxonomy_sponsor.php:32
+msgid "Edit sponsor"
+msgstr "Editar patrocinador"
+
+#: admin/METGS_taxonomy_sponsor.php:33
+msgid "Update sponsor"
+msgstr "Actualizar patrocinador"
+
+#: admin/METGS_taxonomy_sponsor.php:34
+msgid "Add new sponsor"
+msgstr "Añadir nuevo Patrocinador"
+
+#: admin/METGS_taxonomy_sponsor.php:35
+msgid "New sponsor"
+msgstr "Nuevo patrocinador"
+
+#: functions/METGS_functions_inputs.php:83
+msgid "date"
+msgstr "fecha"
+
+#: functions/METGS_functions_inputs.php:88
+msgid "time"
+msgstr "hora"
+
+#: functions/METGS_functions_inputs.php:189
+msgid "Radio"
+msgstr "Radio"
+
+#: functions/METGS_functions_inputs.php:194
+msgid "Checkbox"
+msgstr "Casilla de selección"
+
+#: functions/METGS_functions_inputs.php:199
+#: functions/METGS_functions_inputs.php:204
+msgid "Texto"
+msgstr "Texto"
+
+#: functions/METGS_functions_inputs.php:211
+msgid "País"
+msgstr "País"
+
+#~ msgid "Add new meeting"
+#~ msgstr "Añadir nuevo encuentro"
+
+#~ msgid "meetups"
+#~ msgstr "meetups"
+
+#~ msgid "View Sponsor"
+#~ msgstr "Ver Patrocinador"
+
+#~ msgid "View Speaker"
+#~ msgstr "Ver ponente"
+
+#~ msgid "View Place"
+#~ msgstr "Ver Anuncio"
+
+#~ msgid "Podcasts"
+#~ msgstr "Podcasts"
+
+#~ msgid "Podcast"
+#~ msgstr "Podcast"
+
+#~ msgid "Add New Podcast"
+#~ msgstr "Añadir nuevo capítulo"
+
+#~ msgid "Edit Podcast"
+#~ msgstr "Editar Podcast"
+
+#~ msgid "New Podcast"
+#~ msgstr "New Podcast"
+
+#~ msgid "View Podcast"
+#~ msgstr "Ver Podcast"
+
+#~ msgid "Search Podcasts"
+#~ msgstr "Buscar Podcast"
+
+#~ msgid "podcasts"
+#~ msgstr "podcast"
+
+#~ msgid "WPCommunity"
+#~ msgstr "WPCommunity"
+
+#~ msgid "https://wpgranada.es/wpcommunity/"
+#~ msgstr "https://wpgranada.es/wpcommunity/"
+
+#~ msgid "All tools to organize a meetup."
+#~ msgstr "Todas las herramientas para organizar una Meetup."
+
+#~ msgid "davidperez"
+#~ msgstr "davidperez"
+
+#~ msgid "https://wpgranada/"
+#~ msgstr "https://wpgranada/"
