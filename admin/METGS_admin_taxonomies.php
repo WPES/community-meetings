@@ -1,6 +1,7 @@
 <?php defined('ABSPATH') or die('Not today.');
 
 class METGS_admin_taxonomies{
+    public $prefix = METGS_PREFIX;
 
     function __construct(){
 
