@@ -26,15 +26,38 @@ class METGS_functions_inputs
     var $postHTML;
     var $afterLabel;
 
-    function __construct($name, $id){
+    function __construct($name, $id, $elementType='post'){
         $this->name = $name;
         $this->id = $id;
         $this->postHTML='';
         $this->afterLabel='';
+        $this->elementType=$elementType;
+
+        $screen = get_current_screen();
+        if(!empty($screen) && !empty($screen->base)){
+            switch ($screen->base){
+                case 'edit-tags':
+                    $this->screen='add-term';
+                    break;
+                case 'term':
+                    $this->screen='edit-term';
+                    break;
+                default:
+                    $this->screen='post';
+            }
+        }
+    }
+
+    function isTaxonomy(){
+        return $this->elementType=='taxonomy';
     }
 
     function setInput($required, $label='', $name='', $classes=array(), $id='', $options=array(), $autocomplete='', $disabled=false){
-        $this->value=get_post_meta($this->id, $this->name, true);
+        if($this->isTaxonomy()) {
+            $this->value = get_term_meta($this->id, $this->name, true);
+        } else {
+            $this->value = get_post_meta($this->id, $this->name, true);
+        }
 
         $this->required = $required;
         if(empty($this->label)){
@@ -66,11 +89,19 @@ class METGS_functions_inputs
         }
 
         if(isset($this->saveValue)) {
-            update_post_meta(
-                $this->id,
-                $this->name,
-                $this->saveValue
-            );
+            if($this->isTaxonomy()){
+                update_term_meta(
+                    $this->id,
+                    $this->name,
+                    $this->saveValue
+                );
+            } else {
+                update_post_meta(
+                    $this->id,
+                    $this->name,
+                    $this->saveValue
+                );
+            }
         }
     }
 
@@ -81,12 +112,16 @@ class METGS_functions_inputs
     function showDatetime(){
         $inputDate = new METGS_functions_inputs($this->name.'_date', $this->id);
         $inputDate->setInput(false, $this->label.' '.__('date'));
-        $inputDate->value = date('Y-m-d', $this->value);
+        if(!empty($this->value)) {
+            $inputDate->value = date('Y-m-d', $this->value);
+        }
         $inputDate->showInputHTML('date');
 
         $inputTime = new METGS_functions_inputs($this->name.'_time', $this->id);
         $inputTime->setInput(false, $this->label.' '.__('time', 'metgs'));
-        $inputTime->value = date('H:m', $this->value);
+        if(!empty($this->value)) {
+            $inputTime->value = date('H:m', $this->value);
+        }
         $inputTime->showInputHTML('time');
     }
 
@@ -112,6 +147,43 @@ class METGS_functions_inputs
         $this->showInputHTML('select');
     }
 
+    function showTextarea(){
+        $this->showInputHTML('textarea');
+    }
+
+    function showTexteditor(){
+        $this->showInputHTML('richeditor');
+    }
+
+    function showSocialLinks(){
+        $input = new METGS_functions_inputs($this->name.'_url', $this->id);
+        $input->setInput(false, $this->label.' '.__('url'));
+        $input->showInputHTML('url');
+
+        $input = new METGS_functions_inputs($this->name.'_wpprofile', $this->id);
+        $input->setInput(false, $this->label.' '.__('WordPress Profile', 'metgs'));
+        $input->showInputHTML('url');
+
+        $input = new METGS_functions_inputs($this->name.'_twitter', $this->id);
+        $input->setInput(false, $this->label.' '.__('twitter', 'metgs'));
+        $input->showInputHTML('url');
+
+        $input = new METGS_functions_inputs($this->name.'_linkedin', $this->id);
+        $input->setInput(false, $this->label.' '.__('linkedIn', 'metgs'));
+        $input->showInputHTML('url');
+    }
+
+    function saveSocialLinks(){
+        $input = new METGS_functions_inputs($this->name.'_url', $this->id);
+        $input->save();
+        $input = new METGS_functions_inputs($this->name.'_wpprofile', $this->id);
+        $input->save();
+        $input = new METGS_functions_inputs($this->name.'_twitter', $this->id);
+        $input->save();
+        $input = new METGS_functions_inputs($this->name.'_linkedin', $this->id);
+        $input->save();
+    }
+
     function showInputHTML($type='text'){
         if(empty($this->id)){
             //Won't work with lists
@@ -119,36 +191,63 @@ class METGS_functions_inputs
         }
 
         $this->showInputPreHTML();
-        if ($type=='textarea'){
+        if($type!='checkbox' || $this->screen=='edit-term') {
             $this->showInputLabel();
-            echo '<textarea'.$this->getAttrs().'>'.$this->value.'</textarea>';
-        } else if ($type=='select') {
-            $this->showInputLabel();
-            echo '<select'.$this->getAttrs().'>';
-            $this->showSelectOptions();
-            echo '</select>';
-        } else if ($type=='radio') {
-            $this->showInputLabel();
-            $this->showRadioOptions();
-        } else if ($type=='checkbox') {
-            $checked = '';
-            if ("1" == $this->value) {
-                $checked = ' checked';
-            }
-            echo '<input type="' . $type . '" value="1"'.$this->getAttrs().$checked.'/>';
-            $this->showInputLabel();
-        } else if ($type=='richeditor') {
-            $settings = array(
-                'teeny' => true,
-                'textarea_rows' => 15,
-                'tabindex' => 1
-            );
-            wp_editor(esc_html( $this->value ), $this->name, $settings);
+            $this->input($type);
         } else {
+            $this->input($type);
             $this->showInputLabel();
-            echo '<input type="' . $type . '" value="'.$this->value.'"'.$this->getAttrs().'/>';
         }
         $this->showInputPostHTML();
+    }
+
+    private function inputTextarea(){
+        echo '<textarea'.$this->getAttrs().'>'.$this->value.'</textarea>';
+    }
+
+    private function inputSelect(){
+        echo '<select'.$this->getAttrs().'>';
+        $this->showSelectOptions();
+        echo '</select>';
+    }
+
+    private function inputCheckbox($type){
+        $checked = '';
+        if ("1" == $this->value) {
+            $checked = ' checked';
+        }
+        echo '<input type="' . $type . '" value="1"'.$this->getAttrs().$checked.'/>';
+    }
+
+    private function inputWPEditor(){
+        $settings = array(
+            'teeny' => true,
+            'textarea_rows' => 15,
+            'tabindex' => 1
+        );
+        wp_editor(esc_html( $this->value ), $this->name, $settings);
+    }
+
+    private function input($type){
+        if($this->screen=='edit-term'){
+            echo '<td>';
+        }
+        if ($type=='textarea'){
+            $this->inputTextarea();
+        } else if ($type=='select') {
+            $this->inputSelect();
+        } else if ($type=='radio') {
+            $this->showRadioOptions();
+        } else if ($type=='checkbox') {
+            $this->inputCheckbox($type);
+        } else if ($type=='richeditor') {
+            $this->inputWPEditor();
+        } else {
+            echo '<input type="' . $type . '" value="'.$this->value.'"'.$this->getAttrs().'/>';
+        }
+        if($this->screen=='edit-term'){
+            echo '</td>';
+        }
     }
 
     function showInputPreHTML(){
@@ -156,13 +255,27 @@ class METGS_functions_inputs
         if(!empty($this->name)){
             $classes[]='input-'.$this->name;
         }
-        echo '<div class="'.implode(' ', $classes).'">';
+        if($this->screen=='edit-term'){
+            $classes[]='form-field';
+            if($this->required) {
+                $classes[]='form-required';
+            }
+            echo '<tr class="' . implode(' ', $classes) . '">';
+        } else {
+            echo '<div class="' . implode(' ', $classes) . '">';
+        }
     }
 
     function showInputLabel(){
         if(!empty($this->label)) {
+            if($this->screen=='edit-term'){
+                echo '<th>';
+            }
             echo '<label for="' . $this->id . '">' . $this->label . ($this->required ? '*' : '') .'</label>';
             echo $this->afterLabel;
+            if($this->screen=='edit-term'){
+                echo '</th>';
+            }
         }
     }
 
@@ -200,10 +313,7 @@ class METGS_functions_inputs
         $this->showInputHTML('text');
     }
 
-    function defaultTextarea(){
-        $this->setInput(__('Texto', 'metgs'), 'textarea', array('metgs-input'), '', array());
-        $this->showInputHTML('textarea');
-    }
+
 
     function country() {
         $countriesSelectorObj = new G4CO_functions_countries();
@@ -270,7 +380,11 @@ class METGS_functions_inputs
 
     function showInputPostHTML(){
         echo $this->postHTML;
-        echo '</div>';
+        if($this->screen=='edit-term'){
+            echo '</tr>';
+        } else {
+            echo '</div>';
+        }
     }
 
     function showSelectOptions(){

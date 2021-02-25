@@ -11,13 +11,11 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
     }
 
     public function initTaxonomy(){
-
       add_action( 'init', array($this,'taxonomy_register') );
-
-      add_action( 'init', array($this,'add_taxonomy_metaboxes') );
-
-      add_action( 'init', array($this,'add_taxonomy_columns') );
-
+      add_action( $this->taxonomy.'_add_form_fields', array($this,'add_create_metaboxes'), 10, 1 );
+      add_action( $this->taxonomy.'_edit_form_fields', array($this,'add_edit_metaboxes'), 10, 2 );
+      add_action( 'edit_'.$this->taxonomy, array($this,'save_metaboxes') );
+      add_action( 'create_'.$this->taxonomy, array($this,'save_metaboxes') );
     }
 
     function taxonomy_register(){
@@ -49,8 +47,31 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
         
     }
 
-    function add_taxonomy_metaboxes(){
-        $prefix = '_metgs_';
+    function add_create_metaboxes($taxonomy){
+        echo '<div class="form-field term-meta-text-wrap">';
+        $this->add_metaboxes($taxonomy);
+        echo '</div>';
+    }
+
+    function add_edit_metaboxes($term, $taxonomy){
+        echo '<tr class="form-field term-meta-text-wrap">';
+        $this->add_metaboxes($taxonomy, $term->term_id);
+        echo '</tr>';
+    }
+
+    function add_metaboxes($taxonomy, $term_id=0){
+        //TODO nonce //wp_nonce_field(basename(__FILE__), 'term_meta_text_nonce');
+        //TODO
+        //TODO Image
+
+        $inputObj = new METGS_functions_inputs($this->prefix.'_social_links', $term_id, 'taxonomy');
+        $inputObj->setInput(false, __('Social links', 'metgs'));
+        $inputObj->showSocialLinks();
+    }
+
+    function save_metaboxes($term_id){
+        $inputObj = new METGS_functions_inputs($this->prefix.'_social_links', $term_id, 'taxonomy');
+        $inputObj->saveSocialLinks();
     }
 
 }

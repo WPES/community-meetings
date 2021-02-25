@@ -7,7 +7,6 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
     public $taxonomy_speaker = METGS_TAX_SPEAKER;
     public $taxonomy_sponsor = METGS_TAX_SPONSOR;
     public $taxonomy_place = METGS_TAX_PLACE;
-    public $prefix = METGS_PREFIX;
 
     function __construct(){
 
