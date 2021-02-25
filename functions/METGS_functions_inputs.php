@@ -85,7 +85,7 @@ class METGS_functions_inputs
         $inputDate->showInputHTML('date');
 
         $inputTime = new METGS_functions_inputs($this->name.'_time', $this->id);
-        $inputTime->setInput(false, $this->label.' '.__('time', 'metgs'));
+        $inputTime->setInput(false, $this->label.' '.__('time', 'meetings'));
         $inputTime->value = date('H:m', $this->value);
         $inputTime->showInputHTML('time');
     }
@@ -186,29 +186,29 @@ class METGS_functions_inputs
     }
 
     function defaultRadio(){
-        $this->setInput(__('Radio', 'metgs'), 'radio', array('metgs-input'), '', array());
+        $this->setInput(__('Radio', 'meetings'), 'radio', array('metgs-input'), '', array());
         $this->showInputHTML('radio');
     }
 
     function defaultCheckbox(){
-        $this->setInput(__('Checkbox', 'metgs'), 'checkbox', array('metgs-input'), '', array());
+        $this->setInput(__('Checkbox', 'meetings'), 'checkbox', array('metgs-input'), '', array());
         $this->showInputHTML('checkbox');
     }
 
     function defaultText(){
-        $this->setInput(__('Texto', 'metgs'), 'text', array('metgs-input'), '', array());
+        $this->setInput(__('Texto', 'meetings'), 'text', array('metgs-input'), '', array());
         $this->showInputHTML('text');
     }
 
     function defaultTextarea(){
-        $this->setInput(__('Texto', 'metgs'), 'textarea', array('metgs-input'), '', array());
+        $this->setInput(__('Texto', 'meetings'), 'textarea', array('metgs-input'), '', array());
         $this->showInputHTML('textarea');
     }
 
     function country() {
         $countriesSelectorObj = new G4CO_functions_countries();
         $countriesSelector = $countriesSelectorObj->getSelectorList();
-        $this->setInput(__('País', 'metgs'), 'country', array('metgs-input'), '', $countriesSelector, 'country-name');
+        $this->setInput(__('País', 'meetings'), 'country', array('metgs-input'), '', $countriesSelector, 'country-name');
         $this->showInputHTML('select');
     }
 
