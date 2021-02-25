@@ -22,17 +22,17 @@ class METGS_taxonomy_place extends METGS_admin_taxonomies {
     function taxonomy_register(){
 
         $labels = array(
-            'name'              => __( 'Places', 'metgs' ),
-            'singular_name'     => __( 'Place', 'metgs' ),
-            'search_items'      => __( 'Search place', 'metgs' ),
-            'all_items'         => __( 'All places', 'metgs' ),
-            'parent_item'       => __( 'Parent place', 'metgs' ),
-            'parent_item_colon' => __( 'Parent place:', 'metgs' ),
-            'edit_item'         => __( 'Edit place', 'metgs' ),
-            'update_item'       => __( 'Update place', 'metgs' ),
-            'add_new_item'      => __( 'Add new place', 'metgs' ),
-            'new_item_name'     => __( 'New place', 'metgs' ),
-            'menu_name'         => __( 'Places', 'metgs' ),
+            'name'              => __( 'Places', 'meetings' ),
+            'singular_name'     => __( 'Place', 'meetings' ),
+            'search_items'      => __( 'Search place', 'meetings' ),
+            'all_items'         => __( 'All places', 'meetings' ),
+            'parent_item'       => __( 'Parent place', 'meetings' ),
+            'parent_item_colon' => __( 'Parent place:', 'meetings' ),
+            'edit_item'         => __( 'Edit place', 'meetings' ),
+            'update_item'       => __( 'Update place', 'meetings' ),
+            'add_new_item'      => __( 'Add new place', 'meetings' ),
+            'new_item_name'     => __( 'New place', 'meetings' ),
+            'menu_name'         => __( 'Places', 'meetings' ),
         );
 
         $rewrite = array(

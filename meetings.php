@@ -6,7 +6,7 @@
  * Author: WP Spain Community
  * Author URI: https://wpgranada.es/
  * Version: 0.1
- * Text Domain: metgs
+ * Text Domain: meetings
  * Domain Path: /languages
  * License: GNU General Public License version 3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -139,7 +139,7 @@ final class METGS_init {
     }
 
     function languages(){
-        load_plugin_textdomain( 'metgs', false, basename( dirname( __FILE__ ) ) . '/languages' );
+        load_plugin_textdomain( 'meetings', false, basename( dirname( __FILE__ ) ) . '/languages' );
     }
 
 }

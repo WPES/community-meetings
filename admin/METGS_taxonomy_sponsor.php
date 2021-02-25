@@ -23,17 +23,17 @@ class METGS_taxonomy_sponsor extends METGS_admin_taxonomies
     function taxonomy_register(){
 
         $labels = array(
-            'name'              => __( 'Sponsors', 'metgs' ),
-            'singular_name'     => __( 'Sponsor', 'metgs' ),
-            'search_items'      => __( 'Search sponsor', 'metgs' ),
-            'all_items'         => __( 'All sponsors', 'metgs' ),
-            'parent_item'       => __( 'Parent sponsor', 'metgs' ),
-            'parent_item_colon' => __( 'Parent sponsor:', 'metgs' ),
-            'edit_item'         => __( 'Edit sponsor', 'metgs' ),
-            'update_item'       => __( 'Update sponsor', 'metgs' ),
-            'add_new_item'      => __( 'Add new sponsor', 'metgs' ),
-            'new_item_name'     => __( 'New sponsor', 'metgs' ),
-            'menu_name'         => __( 'Sponsors', 'metgs' ),
+            'name'              => __( 'Sponsors', 'meetings' ),
+            'singular_name'     => __( 'Sponsor', 'meetings' ),
+            'search_items'      => __( 'Search sponsor', 'meetings' ),
+            'all_items'         => __( 'All sponsors', 'meetings' ),
+            'parent_item'       => __( 'Parent sponsor', 'meetings' ),
+            'parent_item_colon' => __( 'Parent sponsor:', 'meetings' ),
+            'edit_item'         => __( 'Edit sponsor', 'meetings' ),
+            'update_item'       => __( 'Update sponsor', 'meetings' ),
+            'add_new_item'      => __( 'Add new sponsor', 'meetings' ),
+            'new_item_name'     => __( 'New sponsor', 'meetings' ),
+            'menu_name'         => __( 'Sponsors', 'meetings' ),
         );
 
         $rewrite = array(

@@ -20,17 +20,17 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
 
     function taxonomy_register(){
         $labels = array(
-            'name'              => __( 'Speakers', 'metgs' ),
-            'singular_name'     => __( 'Speaker', 'metgs' ),
-            'search_items'      => __( 'Search speakers', 'metgs' ),
-            'all_items'         => __( 'All speakers', 'metgs' ),
-            'parent_item'       => __( 'Parent speaker', 'metgs' ),
-            'parent_item_colon' => __( 'Parent speaker:', 'metgs' ),
-            'edit_item'         => __( 'Edit speaker', 'metgs' ),
-            'update_item'       => __( 'Update speaker', 'metgs' ),
-            'add_new_item'      => __( 'Add new speaker', 'metgs' ),
-            'new_item_name'     => __( 'New speaker', 'metgs' ),
-            'menu_name'         => __( 'Speakers', 'metgs' ),
+            'name'              => __( 'Speakers', 'meetings' ),
+            'singular_name'     => __( 'Speaker', 'meetings' ),
+            'search_items'      => __( 'Search speakers', 'meetings' ),
+            'all_items'         => __( 'All speakers', 'meetings' ),
+            'parent_item'       => __( 'Parent speaker', 'meetings' ),
+            'parent_item_colon' => __( 'Parent speaker:', 'meetings' ),
+            'edit_item'         => __( 'Edit speaker', 'meetings' ),
+            'update_item'       => __( 'Update speaker', 'meetings' ),
+            'add_new_item'      => __( 'Add new speaker', 'meetings' ),
+            'new_item_name'     => __( 'New speaker', 'meetings' ),
+            'menu_name'         => __( 'Speakers', 'meetings' ),
         );
 
         $rewrite = array(

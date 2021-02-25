@@ -21,17 +21,17 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
     function cpt_register(){
 
         $labels = array(
-            'name'               => __( 'Meetups', 'metgs' ),
-            'singular_name'      => __( 'Meetup', 'metgs' ),
-            'add_new'            => __( 'Add New Meetup', 'metgs' ),
-            'add_new_item'       => __( 'Add New Meetup', 'metgs' ),
-            'edit_item'          => __( 'Edit Meetup', 'metgs' ),
-            'new_item'           => __( 'New Meetup', 'metgs' ),
-            'view_item'          => __( 'View Meetup', 'metgs' ),
-            'search_items'       => __( 'Search Meetups', 'metgs' ),
-            'not_found'          => __( 'Not found', 'metgs' ),
-            'not_found_in_trash' => __( 'Not found in trash', 'metgs' ),
-            'menu_name'          => __( 'Meetups', 'metgs' ),
+            'name'               => __( 'Meetups', 'meetings' ),
+            'singular_name'      => __( 'Meetup', 'meetings' ),
+            'add_new'            => __( 'Add New Meetup', 'meetings' ),
+            'add_new_item'       => __( 'Add New Meetup', 'meetings' ),
+            'edit_item'          => __( 'Edit Meetup', 'meetings' ),
+            'new_item'           => __( 'New Meetup', 'meetings' ),
+            'view_item'          => __( 'View Meetup', 'meetings' ),
+            'search_items'       => __( 'Search Meetups', 'meetings' ),
+            'not_found'          => __( 'Not found', 'meetings' ),
+            'not_found_in_trash' => __( 'Not found in trash', 'meetings' ),
+            'menu_name'          => __( 'Meetups', 'meetings' ),
         );
 
         $rewrite = array(
@@ -64,7 +64,7 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
     function add_metaboxes(){
             add_meta_box(
                 $this->prefix.'_meetingdetails',
-                __('Meeting details','metgs'),
+                __('Meeting details','meetings'),
                 array($this, 'show_metaboxes_meetingdetails'),  // Content callback, must be of type callable
                 $this->cpt                            // Post type
             );
@@ -72,11 +72,11 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 
     function show_metaboxes_meetingdetails( $post ) {
         $inputObj = new METGS_functions_inputs($this->prefix.'_startdatetime', $post->ID);
-        $inputObj->setInput(false, __('Meeting start', 'metgs'));
+        $inputObj->setInput(false, __('Meeting start', 'meetings'));
         $inputObj->showDatetime();
 
         $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_id', $post->ID);
-        $inputObj->setInput(false, __('Meetup event', 'metgs'));
+        $inputObj->setInput(false, __('Meetup event', 'meetings'));
         $inputObj->showMeetupEvent();
     }
 
