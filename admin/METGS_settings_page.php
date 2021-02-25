@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Library for admin settings
  *
@@ -20,7 +19,7 @@ class METGS_Settings_Page {
 	 *
 	 * @var array
 	 */
-	private  $meetup_settings;
+	private $meetup_settings;
 	/**
 	 * Construct of class
 	 */
@@ -81,7 +80,7 @@ class METGS_Settings_Page {
 
 		add_settings_section(
 			'metgs_setting_section',
-			__( '', 'meetings' ),
+			__( 'Settings', 'meetings' ),
 			array( $this, 'metgs_section_info' ),
 			'meetings-admin'
 		);
@@ -101,10 +100,9 @@ class METGS_Settings_Page {
 	 * @param array $input Input fields.
 	 * @return array
 	 */
-	public function sanitize_fields($input)
-	{
+	public function sanitize_fields( $input ) {
 		$sanitary_values = array();
-		$meetup_settings = get_option('meetings');
+		$meetup_settings = get_option( 'meetings' );
 
 		if ( isset( $input['metgs_meetup_url'] ) ) {
 			$sanitary_values['metgs_meetup_url'] = sanitize_text_field( $input['metgs_meetup_url'] );
@@ -121,6 +119,11 @@ class METGS_Settings_Page {
 		echo sprintf( __( 'Put the connection API key settings in order to connect and sync products. You can go here <a href="%s" target="_blank">Meetings API</a>. ', 'meetings' ), 'https://www.meetup.com/' );
 	}
 
+	/**
+	 * Metgs URL Callback
+	 *
+	 * @return void
+	 */
 	public function metgs_meetup_url_callback() {
 		printf( '<input class="regular-text" type="text" name="meetings[metgs_meetup_url]" id="metgs_meetup_url" value="%s">', ( isset( $this->meetup_settings['metgs_meetup_url'] ) ? esc_attr( $this->meetup_settings['metgs_meetup_url'] ) : '' ) );
 	}
