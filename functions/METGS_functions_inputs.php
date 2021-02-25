@@ -79,31 +79,15 @@ class METGS_functions_inputs
     }
 
     function showDatetime(){
-        $mainname = $this->name;
-        $mainlabel = $this->label;
-        if(isset($this->value)) {
-            $mainvalue = $this->value;
-        }
+        $inputDate = new METGS_functions_inputs($this->name.'_date', $this->id);
+        $inputDate->setInput(false, $this->label.' '.__('date'));
+        $inputDate->value = date('Y-m-d', $this->value);
+        $inputDate->showInputHTML('date');
 
-        $this->name=$mainname.'_date';
-        $this->label=$mainlabel.' '.__('date');
-        if(isset($mainvalue)) {
-            $this->value = date('Y-m-d', $mainvalue);
-        }
-        $this->showInputHTML('date');
-
-        $this->name=$mainname.'_time';
-        $this->label=$mainlabel.' '.__('time', 'metgs');
-        if(isset($mainvalue)) {
-            $this->value = date('H:m', $mainvalue);
-        }
-        $this->showInputHTML('time');
-
-        $this->name=$mainname;
-        $this->label=$mainlabel;
-        if(isset($mainvalue)) {
-            $this->value = $mainvalue;
-        }
+        $inputTime = new METGS_functions_inputs($this->name.'_time', $this->id);
+        $inputTime->setInput(false, $this->label.' '.__('time', 'metgs'));
+        $inputTime->value = date('H:m', $this->value);
+        $inputTime->showInputHTML('time');
     }
 
     function saveDatetime(){
@@ -117,6 +101,15 @@ class METGS_functions_inputs
             $this->saveValue=strtotime($date.' '.$time);
             $this->save();
         }
+    }
+
+    function showMeetupEvent(){
+        $options=array(
+          '0' => 'None',
+          '1' => 'Placeholder'
+        );
+        $this->options = $options;
+        $this->showInputHTML('select');
     }
 
     function showInputHTML($type='text'){
