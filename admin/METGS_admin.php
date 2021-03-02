@@ -18,6 +18,7 @@ class METGS_admin{
         //CPTs register, and their configuration.
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin_cpt.php';
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_cpt_meeting.php';
+        require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_settings_page.php';
 
         //Taxonomies register, and their configuration.
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin_taxonomies.php';
