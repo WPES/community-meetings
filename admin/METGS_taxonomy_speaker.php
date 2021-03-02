@@ -61,7 +61,6 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
 
     function add_metaboxes($taxonomy, $term_id=0){
         //TODO nonce //wp_nonce_field(basename(__FILE__), 'term_meta_text_nonce');
-        //TODO
         //TODO Image
 
         $inputObj = new METGS_functions_inputs($this->prefix.'_social_links', $term_id, 'taxonomy');

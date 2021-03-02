@@ -86,7 +86,7 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
             $inputObj->saveDatetime();
 
             $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_id', $post_id);
-            $inputObj->save();
+            $inputObj->saveMeetupEvent();
         }
     }
 }
