@@ -13,9 +13,7 @@ class METGS_taxonomy_sponsor extends METGS_admin_taxonomies
     public function initTaxonomy(){
         
       add_action( 'init', array($this,'taxonomy_register') );
-
       add_action( 'init', array($this,'add_taxonomy_metaboxes') );
-
       add_action( 'init', array($this,'add_taxonomy_columns') );
 
     }

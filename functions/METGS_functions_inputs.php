@@ -4,6 +4,8 @@
  */
 
 class METGS_functions_inputs {
+	var $prefix=METGS_PREFIX;
+
 	var $label;
 
 	var $id;
@@ -31,18 +33,21 @@ class METGS_functions_inputs {
 		$this->postHTML    = '';
 		$this->afterLabel  = '';
 		$this->elementType = $elementType;
+		$this->screen = 'post';
 
-		$screen = get_current_screen();
-		if ( ! empty( $screen ) && ! empty( $screen->base ) ) {
-			switch ( $screen->base ) {
-				case 'edit-tags':
-					$this->screen = 'add-term';
-					break;
-				case 'term':
-					$this->screen = 'edit-term';
-					break;
-				default:
-					$this->screen = 'post';
+		if(function_exists('get_current_screen')) {
+			$screen = get_current_screen();
+			if ( ! empty( $screen ) && ! empty( $screen->base ) ) {
+				switch ( $screen->base ) {
+					case 'edit-tags':
+						$this->screen = 'add-term';
+						break;
+					case 'term':
+						$this->screen = 'edit-term';
+						break;
+					default:
+						$this->screen = 'post';
+				}
 			}
 		}
 	}
@@ -104,7 +109,7 @@ class METGS_functions_inputs {
 			$this->id = 'input-' . $this->name;
 		}
 
-		$this->showInputPreHTML();
+		$this->showInputPreHTML($type);
 		if ( $type != 'checkbox' || $this->screen == 'edit-term' ) {
 			$this->showInputLabel();
 			$this->input( $type );
@@ -115,10 +120,13 @@ class METGS_functions_inputs {
 		$this->showInputPostHTML();
 	}
 
-	function showInputPreHTML() {
+	function showInputPreHTML($type='') {
 		$classes = array( 'form-group' );
 		if ( ! empty( $this->name ) ) {
-			$classes[] = 'input-' . $this->name;
+			$classes[] = $this->prefix.'-input-' . $this->name;
+		}
+		if ( ! empty( $type ) ) {
+			$classes[] = $this->prefix.'-inputtype-' . $type;
 		}
 		if ( $this->screen == 'edit-term' ) {
 			$classes[] = 'form-field';
@@ -158,8 +166,10 @@ class METGS_functions_inputs {
 			$this->inputCheckbox( $type );
 		} else if ( $type == 'richeditor' ) {
 			$this->inputWPEditor();
+		} else if ( $type == 'image' ) {
+			$this->inputImage();
 		} else {
-			echo '<input type="' . esc_attr($type) . '" value="' . esc_attr($this->value) . '"' . $this->getAttrs() . '/>';
+			$this->inputDefault($type);
 		}
 		if ( $this->screen == 'edit-term' ) {
 			echo '</td>';
@@ -265,6 +275,33 @@ class METGS_functions_inputs {
 			'tabindex'      => 1
 		);
 		wp_editor( esc_html( $this->value ), esc_textarea($this->name), $settings );
+	}
+
+	private function inputImage(){
+		$imageclass='';
+		if(!empty($this->value)){
+			$imgsrc = wp_get_attachment_image_src($this->value, 'original');
+			$imgurl = $imgsrc[0];
+		} else {
+		    $imageclass=' empty';
+        }
+		?>
+		<style>
+			.<?php echo $this->prefix; ?>-inputtype-image .image {
+			<?php if(!empty($imgurl)): ?>
+                background-image: url('<?php echo $imgurl; ?>');
+			<?php endif; ?>
+            }
+		</style>
+
+		<div class="image<?php echo $imageclass; ?>" data-uploader_title="<?php _e('Select image', 'metgs');?>" data-uploader_button_text="<?php _e('Add', 'metgs');?>"></div>
+        <div class="close"><?php _e('Delete image', 'metgs'); ?></div>
+		<?php
+		$this->inputDefault('hidden');
+	}
+
+	private function inputDefault($type){
+		echo '<input type="' . esc_attr($type) . '" value="' . esc_attr($this->value) . '"' . $this->getAttrs() . '/>';
 	}
 
 	function showInputPostHTML() {
@@ -379,6 +416,19 @@ class METGS_functions_inputs {
 		$input->save();
 		$input = new METGS_functions_inputs( $this->name . '_linkedin', $this->id );
 		$input->save();
+	}
+
+	function showImage(){
+		$this->showInputHTML('image');
+	}
+
+	static function enqueueImageScripts(){
+		wp_enqueue_media();
+		wp_register_script('metgs_functions_input_image', METGS_PLUGIN_FUNCTION_URL.'/js/input-image.js', array('jquery'), '1', true );
+		wp_enqueue_script('metgs_functions_input_image');
+
+		wp_enqueue_style( 'metgs_functions_input_image', METGS_PLUGIN_FUNCTION_URL.'/js/input-image.css');
+
 	}
 
 	function setDisabled() {

@@ -88,6 +88,11 @@ final class METGS_init {
         if ( ! defined( 'METGS_PLUGIN_ADMIN_URL' ) ) {
             define( 'METGS_PLUGIN_ADMIN_URL', METGS_PLUGIN_URL.'admin/' );
         }
+
+	    // Plugin Functions URL
+	    if ( ! defined( 'METGS_PLUGIN_FUNCTION_URL' ) ) {
+		    define( 'METGS_PLUGIN_FUNCTION_URL', METGS_PLUGIN_URL.'functions/' );
+	    }
         
         // Plugin Public URL
         if ( ! defined( 'METGS_PLUGIN_PUBLIC_URL' ) ) {

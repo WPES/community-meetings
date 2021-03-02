@@ -14,8 +14,10 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
       add_action( 'init', array($this,'taxonomy_register') );
       add_action( $this->taxonomy.'_add_form_fields', array($this,'add_create_metaboxes'), 10, 1 );
       add_action( $this->taxonomy.'_edit_form_fields', array($this,'add_edit_metaboxes'), 10, 2 );
+      add_action( 'current_screen', array($this,'add_metaboxes_scripts'));
       add_action( 'edit_'.$this->taxonomy, array($this,'save_metaboxes') );
       add_action( 'create_'.$this->taxonomy, array($this,'save_metaboxes') );
+
     }
 
     function taxonomy_register(){
@@ -66,11 +68,24 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
         $inputObj = new METGS_functions_inputs($this->prefix.'_social_links', $term_id, 'taxonomy');
         $inputObj->setInput(false, __('Social links', 'metgs'));
         $inputObj->showSocialLinks();
+
+	    $inputObj = new METGS_functions_inputs($this->prefix.'_avatar', $term_id, 'taxonomy');
+	    $inputObj->setInput(false, __('Avatar', 'metgs'));
+        $inputObj->showImage();
+    }
+
+    function add_metaboxes_scripts($screen){
+    	if ( ( $screen->base == 'term' || $screen->base == 'edit-tags' ) && $screen->taxonomy == $this->taxonomy ) {
+			add_action( 'admin_enqueue_scripts', array( 'METGS_functions_inputs', 'enqueueImageScripts' ) );
+    	}
     }
 
     function save_metaboxes($term_id){
         $inputObj = new METGS_functions_inputs($this->prefix.'_social_links', $term_id, 'taxonomy');
         $inputObj->saveSocialLinks();
+
+	    $inputObj = new METGS_functions_inputs($this->prefix.'_avatar', $term_id, 'taxonomy');
+		$inputObj->save();
     }
 
 }
