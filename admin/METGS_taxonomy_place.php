@@ -46,35 +46,35 @@ class METGS_taxonomy_place extends METGS_admin_taxonomies {
 
 	function add_metaboxes($taxonomy, $term_id=0){
 		$inputObj = new METGS_functions_inputs($this->prefix.'_image', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('Image', 'metgs'));
+		$inputObj->setInput(false, __('Image', 'meetings'));
 		$inputObj->showImage();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_social_links', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('Social links', 'metgs'));
+		$inputObj->setInput(false, __('Social links', 'meetings'));
 		$inputObj->showSocialLinks();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_street', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('Street', 'metgs'));
+		$inputObj->setInput(false, __('Street', 'meetings'));
 		$inputObj->showText();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_address_details', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('Address details', 'metgs'));
+		$inputObj->setInput(false, __('Address details', 'meetings'));
 		$inputObj->showText();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_cp', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('Postal code', 'metgs'));
+		$inputObj->setInput(false, __('Postal code', 'meetings'));
 		$inputObj->showText();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_city', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('City', 'metgs'));
+		$inputObj->setInput(false, __('City', 'meetings'));
 		$inputObj->showText();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_state', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('State', 'metgs'));
+		$inputObj->setInput( false, __( 'State', 'meetings' ) );
 		$inputObj->showText();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_country', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('Country', 'metgs'));
+		$inputObj->setInput(false, __('Country', 'meetings'));
 		$inputObj->showCountry();
 	}
 
