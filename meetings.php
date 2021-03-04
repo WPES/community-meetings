@@ -6,7 +6,7 @@
  * Author: WP Spain Community
  * Author URI: https://wpgranada.es/
  * Version: 0.1
- * Text Domain: metgs
+ * Text Domain: meetings
  * Domain Path: /languages
  * License: GNU General Public License version 3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -88,6 +88,11 @@ final class METGS_init {
         if ( ! defined( 'METGS_PLUGIN_ADMIN_URL' ) ) {
             define( 'METGS_PLUGIN_ADMIN_URL', METGS_PLUGIN_URL.'admin/' );
         }
+
+	    // Plugin Functions URL
+	    if ( ! defined( 'METGS_PLUGIN_FUNCTION_URL' ) ) {
+		    define( 'METGS_PLUGIN_FUNCTION_URL', METGS_PLUGIN_URL.'functions/' );
+	    }
         
         // Plugin Public URL
         if ( ! defined( 'METGS_PLUGIN_PUBLIC_URL' ) ) {
@@ -124,7 +129,7 @@ final class METGS_init {
     private function includes(){
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin.php';
         //require_once METGS_PLUGIN_PUBLIC_DIR . 'METGS_public.php';
-        //require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions.php';
+        require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions.php';
     }
 
     private function inits(){
@@ -132,14 +137,14 @@ final class METGS_init {
         $admin->load();
 
         /*$public = new METGS_public();
-        $public->load();
+        $public->load();*/
 
         $functions = new METGS_functions();
-        $functions->load();*/
+        $functions->load();
     }
 
     function languages(){
-        load_plugin_textdomain( 'metgs', false, basename( dirname( __FILE__ ) ) . '/languages' );
+        load_plugin_textdomain( 'meetings', false, basename( dirname( __FILE__ ) ) . '/languages' );
     }
 
 }

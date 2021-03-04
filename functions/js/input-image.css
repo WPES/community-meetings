@@ -1,0 +1,37 @@
+.METGS-inputtype-image{
+
+}
+
+.METGS-inputtype-image .image{
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.METGS-inputtype-image .image.empty{
+    background-color: grey;
+    background-image: none!important;
+}
+
+.METGS-inputtype-image .image.empty:hover {
+    opacity: 0.7;
+}
+
+.METGS-inputtype-image .image.empty::before {
+    content: "+";
+    font-size: 85px;
+    display: block;
+    padding: 20px;
+    text-align: center;
+    line-height: 77px;
+}
+
+.METGS-inputtype-image .close {
+    display: inline-block;
+    text-align: center;
+    background: #dadada;
+    padding: 9px;
+    cursor: pointer;
+}

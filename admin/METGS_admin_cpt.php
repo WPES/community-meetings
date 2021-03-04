@@ -1,6 +1,7 @@
 <?php defined('ABSPATH') or die('Not today.');
 
 class METGS_admin_cpt {
+    public $prefix = METGS_PREFIX;
 
     function __construct(){
 
