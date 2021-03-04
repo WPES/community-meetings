@@ -15,6 +15,7 @@ class METGS_functions
     }
 
     private function includes() {
+        require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions_countries.php';
         require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions_inputs.php';
     }
 

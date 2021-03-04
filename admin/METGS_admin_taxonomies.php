@@ -8,8 +8,33 @@ class METGS_admin_taxonomies{
     }
 
     public function initTaxonomies(){
-
+	    add_action( $this->taxonomy . '_add_form_fields', array( $this, 'add_create_metaboxes' ), 10, 1 );
+	    add_action( $this->taxonomy . '_edit_form_fields', array( $this, 'add_edit_metaboxes' ), 10, 2 );
+	    add_action( 'current_screen', array( $this, 'add_metaboxes_scripts' ) );
+	    add_action( 'edit_' . $this->taxonomy, array( $this, 'save_metaboxes' ) );
+	    add_action( 'create_' . $this->taxonomy, array( $this, 'save_metaboxes' ) );
     }
+
+	function add_create_metaboxes($taxonomy){
+		echo '<div class="form-field term-meta-text-wrap">';
+		$this->add_metaboxes($taxonomy);
+		echo '</div>';
+	}
+
+	function add_edit_metaboxes($term, $taxonomy){
+		echo '<tr class="form-field term-meta-text-wrap">';
+		$this->add_metaboxes($taxonomy, $term->term_id);
+		echo '</tr>';
+	}
+
+	function add_metaboxes($taxonomy, $term_id=0) {
+	}
+
+	function add_metaboxes_scripts($screen){
+	}
+
+	function save_metaboxes($term_id){
+	}
 
     function getStandardPublicTaxonomyArgs($labels){
         $args = array(
