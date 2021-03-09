@@ -135,30 +135,30 @@ class METGS_functions_inputs {
 	}
 
 	function showSocialLinks() {
-		$input = new METGS_functions_inputs( $this->name . '_url', $this->id );
+		$input = new METGS_functions_inputs( $this->name . '_url', $this->id, $this->elementType );
 		$input->setInput( false, $this->label . ' ' . __( 'url' ) );
 		$input->showInputHTML( 'url' );
 
-		$input = new METGS_functions_inputs( $this->name . '_wpprofile', $this->id );
+		$input = new METGS_functions_inputs( $this->name . '_wpprofile', $this->id, $this->elementType );
 		$input->setInput( false, $this->label . ' ' . __( 'WordPress Profile', 'metgs' ) );
 		$input->showInputHTML( 'url' );
 
-		$input = new METGS_functions_inputs( $this->name . '_twitter', $this->id );
+		$input = new METGS_functions_inputs( $this->name . '_twitter', $this->id, $this->elementType );
 		$input->setInput( false, $this->label . ' ' . __( 'twitter', 'metgs' ) );
 		$input->showInputHTML( 'url' );
 
-		$input = new METGS_functions_inputs( $this->name . '_linkedin', $this->id );
+		$input = new METGS_functions_inputs( $this->name . '_linkedin', $this->id, $this->elementType );
 		$input->setInput( false, $this->label . ' ' . __( 'linkedIn', 'metgs' ) );
 		$input->showInputHTML( 'url' );
 	}
 	function saveSocialLinks() {
-		$input = new METGS_functions_inputs( $this->name . '_url', $this->id );
+		$input = new METGS_functions_inputs( $this->name . '_url', $this->id, $this->elementType );
 		$input->save();
-		$input = new METGS_functions_inputs( $this->name . '_wpprofile', $this->id );
+		$input = new METGS_functions_inputs( $this->name . '_wpprofile', $this->id, $this->elementType );
 		$input->save();
-		$input = new METGS_functions_inputs( $this->name . '_twitter', $this->id );
+		$input = new METGS_functions_inputs( $this->name . '_twitter', $this->id, $this->elementType );
 		$input->save();
-		$input = new METGS_functions_inputs( $this->name . '_linkedin', $this->id );
+		$input = new METGS_functions_inputs( $this->name . '_linkedin', $this->id, $this->elementType );
 		$input->save();
 	}
 
@@ -220,7 +220,7 @@ class METGS_functions_inputs {
 	/* Internal functions */
 
 	function isTaxonomy() {
-		return $this->elementType == 'taxonomy';
+		return ($this->elementType == 'taxonomy');
 	}
 	function setDisabled() {
 		$this->disabled = true;

@@ -128,7 +128,7 @@ final class METGS_init {
 
     private function includes(){
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin.php';
-        //require_once METGS_PLUGIN_PUBLIC_DIR . 'METGS_public.php';
+        require_once METGS_PLUGIN_PUBLIC_DIR . 'METGS_public.php';
         require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions.php';
     }
 
@@ -136,8 +136,8 @@ final class METGS_init {
         $admin = new METGS_admin();
         $admin->load();
 
-        /*$public = new METGS_public();
-        $public->load();*/
+        $public = new METGS_public();
+        $public->load();
 
         $functions = new METGS_functions();
         $functions->load();

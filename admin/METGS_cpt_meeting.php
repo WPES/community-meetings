@@ -16,6 +16,7 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
         add_action('init', array($this, 'cpt_register'));
         add_action('add_meta_boxes', array($this, 'add_metaboxes'));
         add_action('save_post', array($this, 'save_metaboxes'), 10, 2);
+	    add_filter( 'the_content', array($this, 'add_to_content'), 1 );
     }
 
     function cpt_register(){
@@ -88,5 +89,35 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
             $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_id', $post_id);
             $inputObj->saveMeetupEvent();
         }
+    }
+
+    function add_to_content($content){
+    	$additionalContent = '';
+	    if ( is_singular($this->cpt) && in_the_loop() && is_main_query() ) {
+	    	ob_start();
+		    $speakers = get_the_terms(get_the_ID(), METGS_TAX_SPEAKER);
+		    if(!empty($speakers)){
+		    	foreach ($speakers as $speaker){
+				    $speakerObj = new METGS_speaker($speaker);
+		    		$speakerObj->showInfo();
+			    }
+		    }
+		    $sponsors = get_the_terms(get_the_ID(), METGS_TAX_SPONSOR);
+		    if(!empty($sponsors)){
+			    foreach ($sponsors as $sponsor){
+				    $sponsorObj = new METGS_sponsor($sponsor);
+				    $sponsorObj->showInfo();
+			    }
+		    }
+		    $places = get_the_terms(get_the_ID(), METGS_TAX_PLACE);
+		    if(!empty($places)){
+			    foreach ($places as $place){
+				    $placeObj = new METGS_place($place);
+				    $placeObj->showInfo();
+			    }
+		    }
+		    $additionalContent = ob_get_clean();
+	    }
+	    return $content.$additionalContent;
     }
 }
