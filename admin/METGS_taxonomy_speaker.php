@@ -45,11 +45,11 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
 
     function add_metaboxes($taxonomy, $term_id=0){
         $inputObj = new METGS_functions_inputs($this->prefix.'_social_links', $term_id, 'taxonomy');
-        $inputObj->setInput(false, __('Social links', 'metgs'));
+        $inputObj->setInput(false, __('Social links', 'meetings'));
         $inputObj->showSocialLinks();
 
 	    $inputObj = new METGS_functions_inputs($this->prefix.'_image', $term_id, 'taxonomy');
-	    $inputObj->setInput(false, __('Avatar', 'metgs'));
+	    $inputObj->setInput(false, __('Avatar', 'meetings'));
         $inputObj->showImage();
     }
 

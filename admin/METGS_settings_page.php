@@ -51,6 +51,11 @@ class METGS_Settings_Page {
 	 */
 	public function create_admin_page() {
 		$this->meetup_settings = get_option( 'meetings' );
+		$results = $this->get_meetup_options( $this->meetup_settings['meetup_url'] );
+
+		echo '<pre>results:';
+		print_r($results);
+		echo '</pre>';
 		?>
 		<div class="wrap">
 			<h2><?php esc_html_e( 'Meetings Settings', 'meetings' ); ?>
@@ -86,9 +91,9 @@ class METGS_Settings_Page {
 		);
 
 		add_settings_field(
-			'metgs_meetup_url',
+			'meetup_url',
 			__( 'Meetup URL', 'meetings' ),
-			array( $this, 'metgs_meetup_url_callback' ),
+			array( $this, 'meetup_url_callback' ),
 			'meetings-admin',
 			'metgs_setting_section'
 		);
@@ -102,11 +107,11 @@ class METGS_Settings_Page {
 	 */
 	public function sanitize_fields( $input ) {
 		$sanitary_values = array();
-		$meetup_settings = get_option( 'meetings' );
 
-		if ( isset( $input['metgs_meetup_url'] ) ) {
-			$sanitary_values['metgs_meetup_url'] = sanitize_text_field( $input['metgs_meetup_url'] );
+		if ( isset( $input['meetup_url'] ) ) {
+			$sanitary_values['meetup_url'] = sanitize_text_field( $input['meetup_url'] );
 		}
+
 		return $sanitary_values;
 	}
 
@@ -124,8 +129,42 @@ class METGS_Settings_Page {
 	 *
 	 * @return void
 	 */
-	public function metgs_meetup_url_callback() {
-		printf( '<input class="regular-text" type="text" name="meetings[metgs_meetup_url]" id="metgs_meetup_url" value="%s">', ( isset( $this->meetup_settings['metgs_meetup_url'] ) ? esc_attr( $this->meetup_settings['metgs_meetup_url'] ) : '' ) );
+	public function meetup_url_callback() {
+		printf( '<input class="regular-text" type="text" name="meetings[meetup_url]" id="meetup_url" value="%s">', ( isset( $this->meetup_settings['meetup_url'] ) ? esc_attr( $this->meetup_settings['meetup_url'] ) : '' ) );
+	}
+
+	private function get_meetup_options( $url ) {
+		$results = array();
+		$dom = new DOMDocument();
+		$context = stream_context_create(
+			array(
+				'http' => array(
+					'follow_location' => false,
+				),
+				'ssl' => array(
+					'verify_peer' => false,
+					'verify_peer_name' => false,
+				),
+			)
+		);
+		libxml_use_internal_errors( true );
+		libxml_set_streams_context( $context );
+
+		$dom->loadHTMLFile( $url );
+		$finder    = new DomXPath( $dom );
+		$classname = "groupHomeHeaderInfo-memberLink";
+		$nodes     = $finder->query( "//*[contains(@class, '$classname')]" );
+		$tmp_dom   = new DOMDocument(); 
+		foreach ( $nodes as $node ) {
+			$tmp_dom->appendChild( $tmp_dom->importNode( $node,true ) );
+		}
+		$html_var = trim( $tmp_dom->saveHTML() ); 
+		$string   = preg_replace( '/<[^>]*>/', '', $html_var );
+		$string   = str_replace( '.', '', $string );
+		preg_match_all( '!\d+!', $string, $matches );
+		$results['members'] = $matches[0];
+
+		return $results;
 	}
 }
 if ( is_admin() ) {
