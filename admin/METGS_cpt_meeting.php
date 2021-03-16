@@ -16,7 +16,9 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
         add_action('init', array($this, 'cpt_register'));
         add_action('add_meta_boxes', array($this, 'add_metaboxes'));
         add_action('save_post', array($this, 'save_metaboxes'), 10, 2);
-	    add_filter( 'the_content', array($this, 'add_to_content'), 1 );
+	    remove_filter( 'the_content', 'wpautop' );
+	    add_filter( 'the_content', array($this, 'add_to_content'), 26 );
+	    add_filter( 'the_content', 'wpautop');
     }
 
     function cpt_register(){
@@ -97,24 +99,38 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 	    	ob_start();
 		    $speakers = get_the_terms(get_the_ID(), METGS_TAX_SPEAKER);
 		    if(!empty($speakers)){
+		    	echo '<div class="metgs-speakers">';
+		    	echo '<div class="metgs-box-title">'.__('Speakers', 'metgs').'</div>';
+		    	echo '<div class="metgs-box">';
 		    	foreach ($speakers as $speaker){
 				    $speakerObj = new METGS_speaker($speaker);
 		    		$speakerObj->showInfo();
 			    }
+		    	echo '</div>';
+		    	echo '</div>';
 		    }
 		    $sponsors = get_the_terms(get_the_ID(), METGS_TAX_SPONSOR);
 		    if(!empty($sponsors)){
+			    echo '<div class="metgs-sponsors">';
+			    echo '<div class="metgs-box-title">'.__('Sponsors', 'metgs').'</div>';
+			    echo '<div class="metgs-box">';
 			    foreach ($sponsors as $sponsor){
 				    $sponsorObj = new METGS_sponsor($sponsor);
 				    $sponsorObj->showInfo();
 			    }
+			    echo '</div>';
+			    echo '</div>';
 		    }
 		    $places = get_the_terms(get_the_ID(), METGS_TAX_PLACE);
 		    if(!empty($places)){
+			    echo '<div class="metgs-places">';
+			    echo '<div class="metgs-box-title">'.__('Places', 'metgs').'</div>';
+			    echo '<div class="metgs-box">';
 			    foreach ($places as $place){
 				    $placeObj = new METGS_place($place);
 				    $placeObj->showInfo();
 			    }
+			    echo '</div>';
 		    }
 		    $additionalContent = ob_get_clean();
 	    }

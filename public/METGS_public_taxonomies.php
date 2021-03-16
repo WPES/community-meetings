@@ -53,6 +53,32 @@ class METGS_public_taxonomies
 		return $socialLinks;
 	}
 
+	function getSocialLinksHTML(){
+		$html = '';
+		$socialLinksArray = $this->getSocialLinks();
+		if(!empty($socialLinksArray) && is_array($socialLinksArray)) {
+			$html .= '<ul class="metgs-links">';
+			foreach ( $socialLinksArray as $service => $link ) {
+				switch ($service){
+					case 'twitter':
+						$text = __('Go to Twitter profile', 'metgs');
+						break;
+					case 'linkedin':
+						$text = __('Go to LinkedIn page', 'metgs');
+						break;
+					case 'wpprofile':
+						$text = __('Go to WordPress.org profile', 'metgs');
+						break;
+					default:
+						$text = __('Go to URL', 'metgs');
+				}
+				$html .= '<li class="metgs-link-'.esc_attr($service).'"><a href="'.esc_url($link).'" target="_blank" title="'.esc_attr($text).'"></a></li>';
+			}
+			$html .= '</ul>';
+		}
+		return $html;
+	}
+
 	function getImageID(){
 		$imageId = $this->getValue($this->prefix.'_image');
 		if(empty($imageId)){
@@ -65,8 +91,8 @@ class METGS_public_taxonomies
         $html = '';
         $imgid = $this->getImageID();
         if(!empty($imgid)) {
-	        $html .= '<div class="metgs-term-img-wrapper metgs-img-' . $this->slug . '">';
-	        $html .= wp_get_attachment_image( $imgid );
+	        $html .= '<div class="metgs-img metgs-term-img-wrapper metgs-img-' . $this->slug . '">';
+	        $html .= wp_get_attachment_image( $imgid, 'medium' );
 	        $html .= '</div>';
         }
         return $html;

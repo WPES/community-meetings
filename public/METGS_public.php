@@ -27,12 +27,12 @@ class METGS_public
     }
 
     private function inits(){
-        //add_action( 'wp_enqueue_scripts', array( $this, 'registerCSSScripts' ) );
+        add_action( 'wp_enqueue_scripts', array( $this, 'registerCSSScripts' ) );
         //add_action( 'wp_enqueue_scripts', array( $this, 'registerJSScripts' ) );
     }
 
     function registerCSSScripts( $hook ) {
-        wp_register_style( $this->class_prefix.'-public-style', plugins_url( '/css/sass/style.css', __FILE__ ), array(), '1.0', 'screen' );
+        wp_register_style( $this->class_prefix.'-public-style', plugins_url( '/css/style.css', __FILE__ ), array(), '1.0', 'screen' );
         wp_enqueue_style( $this->class_prefix.'-public-style' );
     }
 
