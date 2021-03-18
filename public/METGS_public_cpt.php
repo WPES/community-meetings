@@ -1,5 +1,6 @@
 <?php
 class METGS_public_cpt {
+	public $prefix = METGS_PREFIX;
 
 	public function __construct($id=0)
 	{

@@ -97,6 +97,15 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
     	$additionalContent = '';
 	    if ( is_singular($this->cpt) && in_the_loop() && is_main_query() ) {
 	    	ob_start();
+		    echo '<div class="metgs-meetings">';
+		        echo '<div class="metgs-box-title">'.__('Meeting', 'metgs').'</div>';
+			    echo '<div class="metgs-box">';
+			    $meetingObj = new METGS_meeting(get_queried_object_id());
+				$meetingObj->showInfo();
+
+			    echo '</div>';
+		    echo '</div>';
+
 		    $speakers = get_the_terms(get_the_ID(), METGS_TAX_SPEAKER);
 		    if(!empty($speakers)){
 		    	echo '<div class="metgs-speakers">';
