@@ -1,7 +1,7 @@
 === Community meetings ===
 Contributors: davidperez, webappdesign, frantorres
 Tags: meetings, community
-Requires at least: 4.5
+Requires at least: 4.6
 Tested up to: 5.6.1
 Stable tag: 0.1
 Requires PHP: 7.2

@@ -11,11 +11,11 @@ class METGS_taxonomy_place extends METGS_admin_taxonomies {
 
 	public function initTaxonomy() {
 		add_action( 'init', array( $this, 'taxonomy_register' ) );
+		add_filter('get_the_archive_description', array($this,'archiveDescription'));
 		parent::initTaxonomies();
 	}
 
 	function taxonomy_register() {
-
 		$labels = array(
 			'name'              => __( 'Places', 'meetings' ),
 			'singular_name'     => __( 'Place', 'meetings' ),
@@ -41,7 +41,16 @@ class METGS_taxonomy_place extends METGS_admin_taxonomies {
 		$args['rewrite']      = $rewrite;
 
 		register_taxonomy( $this->taxonomy, $this->cpt_meetings, $args );
+	}
 
+	function archiveDescription($description){
+		if(is_tax($this->taxonomy)){
+			ob_start();
+			$placeObj = new METGS_place(get_queried_object_id());
+			$placeObj->showInfo();
+			$description = ob_get_clean();
+		}
+		return $description;
 	}
 
 	function add_metaboxes($taxonomy, $term_id=0){
@@ -97,7 +106,7 @@ class METGS_taxonomy_place extends METGS_admin_taxonomies {
 		$inputObj = new METGS_functions_inputs($this->prefix.'_address_details', $term_id, 'taxonomy');
 		$inputObj->save();
 
-		$inputObj = new METGS_functions_inputs($this->prefix.'_address_details', $term_id, 'taxonomy');
+		$inputObj = new METGS_functions_inputs($this->prefix.'_cp', $term_id, 'taxonomy');
 		$inputObj->save();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_city', $term_id, 'taxonomy');

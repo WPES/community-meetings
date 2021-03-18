@@ -11,6 +11,7 @@ class METGS_taxonomy_sponsor extends METGS_admin_taxonomies {
 
 	public function initTaxonomy() {
 		add_action( 'init', array( $this, 'taxonomy_register' ) );
+		add_filter('get_the_archive_description', array($this,'archiveDescription'));
 		parent::initTaxonomies();
 	}
 
@@ -56,6 +57,16 @@ class METGS_taxonomy_sponsor extends METGS_admin_taxonomies {
 		$inputObj = new METGS_functions_inputs($this->prefix.'_image', $term_id, 'taxonomy');
 		$inputObj->setInput(false, __('Logo', 'meetings'));
 		$inputObj->showImage();
+	}
+
+	function archiveDescription($description){
+		if(is_tax($this->taxonomy)){
+			ob_start();
+			$placeObj = new METGS_sponsor(get_queried_object_id());
+			$placeObj->showInfo();
+			$description = ob_get_clean();
+		}
+		return $description;
 	}
 
 	function add_metaboxes_scripts($screen){
