@@ -52,10 +52,6 @@ class METGS_Settings_Page {
 	public function create_admin_page() {
 		$this->meetup_settings = get_option( 'meetings' );
 		$results = $this->get_meetup_options( $this->meetup_settings['meetup_url'] );
-
-		echo '<pre>results:';
-		print_r($results);
-		echo '</pre>';
 		?>
 		<div class="wrap">
 			<h2><?php esc_html_e( 'Meetings Settings', 'meetings' ); ?>
