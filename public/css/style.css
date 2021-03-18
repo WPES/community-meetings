@@ -12,16 +12,20 @@
   align-items: center;
   padding: 40px 20px 20px 30px;
 }
-.metgs-item .metgs-img {
+.metgs-item .metgs-avatar, .metgs-item .metgs-placeimg {
   flex: 1 1 200px;
   max-width: 200px;
   margin-left: 30px;
   margin-bottom: 20px;
-  font-weight: 700;
   align-self: flex-start;
 }
-.metgs-item .metgs-img > img {
+.metgs-item .metgs-avatar > img {
   border-radius: 50%;
+}
+.metgs-item .metgs-img {
+  flex: 1 1 100%;
+  margin-left: 30px;
+  margin-bottom: 20px;
 }
 .metgs-item .metgs-data {
   flex: 1 1 300px;
@@ -32,8 +36,22 @@
   font-weight: 700;
   margin-bottom: 10px;
 }
+.metgs-item .metgs-claim {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.metgs-item .metgs-address {
+  margin-bottom: 10px;
+}
+.metgs-item .metgs-address .metgs-address-details {
+  display: block;
+}
 .metgs-item .metgs-description {
   margin-bottom: 15px;
+}
+
+.metgs-sponsor .metgs-img, .metgs-sponsor .metgs-name, .metgs-sponsor .metgs-claim {
+  text-align: center;
 }
 
 .metgs-links {

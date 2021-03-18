@@ -12,7 +12,8 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
 
     public function initTaxonomy(){
     	add_action( 'init', array($this,'taxonomy_register') );
-    	parent::initTaxonomies();
+	    add_filter('get_the_archive_description', array($this,'archiveDescription'));
+	    parent::initTaxonomies();
     }
 
     function taxonomy_register(){
@@ -42,6 +43,16 @@ class METGS_taxonomy_speaker extends METGS_admin_taxonomies
 
         register_taxonomy( $this->taxonomy, $this->cpt_meetings, $args );
     }
+
+	function archiveDescription($description){
+		if(is_tax($this->taxonomy)){
+			ob_start();
+			$placeObj = new METGS_speaker(get_queried_object_id());
+			$placeObj->showInfo();
+			$description = ob_get_clean();
+		}
+		return $description;
+	}
 
     function add_metaboxes($taxonomy, $term_id=0){
         $inputObj = new METGS_functions_inputs($this->prefix.'_social_links', $term_id, 'taxonomy');

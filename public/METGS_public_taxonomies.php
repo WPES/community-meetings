@@ -28,6 +28,14 @@ class METGS_public_taxonomies
     	return $this->name;
     }
 
+    function getNameWithURL(){
+	    return '<a href="'.esc_url($this->getURL()).'">'.esc_html($this->name).'</a>';
+    }
+
+    function getURL(){
+		return get_term_link($this->id);
+    }
+
     function getDescription(){
 	    return $this->description;
     }
@@ -87,11 +95,11 @@ class METGS_public_taxonomies
 		return $imageId;
 	}
 
-    function getImageHTML(){
+    function getImageHTML($imgclass='img'){
         $html = '';
         $imgid = $this->getImageID();
         if(!empty($imgid)) {
-	        $html .= '<div class="metgs-img metgs-term-img-wrapper metgs-img-' . $this->slug . '">';
+	        $html .= '<div class="metgs-'.esc_attr($imgclass).' metgs-term-img-wrapper metgs-img-' . $this->slug . '">';
 	        $html .= wp_get_attachment_image( $imgid, 'medium' );
 	        $html .= '</div>';
         }
