@@ -3,7 +3,7 @@
 class METGS_cpt_meeting extends METGS_admin_cpt {
 
     public $cpt = METGS_CPT_MEETING;
-    public $rewrite = 'meeting';
+    public $rewrite = 'meetups';
     public $taxonomy_speaker = METGS_TAX_SPEAKER;
     public $taxonomy_sponsor = METGS_TAX_SPONSOR;
     public $taxonomy_place = METGS_TAX_PLACE;
