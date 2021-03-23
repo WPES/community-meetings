@@ -127,6 +127,9 @@ class METGS_functions_inputs {
 	function showText() {
 		$this->showInputHTML( 'text' );
 	}
+	function showUrl() {
+		$this->showInputHTML( 'url' );
+	}
 	function showTextarea() {
 		$this->showInputHTML( 'textarea' );
 	}
@@ -196,6 +199,8 @@ class METGS_functions_inputs {
 			}
 		} else if ( $type == 'richeditor' ) {
 			$this->saveValue = wp_kses_post( $this->saveValue );
+		} else if ($type == 'url') {
+			$this->saveValue = esc_url_raw($this->saveValue);
 		} else {
 			$this->saveValue = sanitize_text_field( $this->saveValue );
 		}

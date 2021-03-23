@@ -131,35 +131,40 @@ class METGS_Settings_Page {
 
 	private function get_meetup_options( $url ) {
 		$results = array();
-		$dom = new DOMDocument();
-		$context = stream_context_create(
-			array(
-				'http' => array(
-					'follow_location' => false,
-				),
-				'ssl' => array(
-					'verify_peer' => false,
-					'verify_peer_name' => false,
-				),
-			)
-		);
-		libxml_use_internal_errors( true );
-		libxml_set_streams_context( $context );
+		if ( ! empty( $url ) ) {
+			$transientName = 'METGS_settings_page-get_meetup_options-'.md5($url);
+			if ( false === ( $results = get_transient( $transientName ) ) ) {
+				$dom     = new DOMDocument();
+				$context = stream_context_create(
+					array(
+						'http' => array(
+							'follow_location' => false,
+						),
+						'ssl'  => array(
+							'verify_peer'      => false,
+							'verify_peer_name' => false,
+						),
+					)
+				);
+				libxml_use_internal_errors( true );
+				libxml_set_streams_context( $context );
 
-		$dom->loadHTMLFile( $url );
-		$finder    = new DomXPath( $dom );
-		$classname = "groupHomeHeaderInfo-memberLink";
-		$nodes     = $finder->query( "//*[contains(@class, '$classname')]" );
-		$tmp_dom   = new DOMDocument(); 
-		foreach ( $nodes as $node ) {
-			$tmp_dom->appendChild( $tmp_dom->importNode( $node,true ) );
+				$dom->loadHTMLFile( $url );
+				$finder    = new DomXPath( $dom );
+				$classname = "groupHomeHeaderInfo-memberLink";
+				$nodes     = $finder->query( "//*[contains(@class, '$classname')]" );
+				$tmp_dom   = new DOMDocument();
+				foreach ( $nodes as $node ) {
+					$tmp_dom->appendChild( $tmp_dom->importNode( $node, true ) );
+				}
+				$html_var = trim( $tmp_dom->saveHTML() );
+				$string   = preg_replace( '/<[^>]*>/', '', $html_var );
+				$string   = str_replace( '.', '', $string );
+				preg_match_all( '!\d+!', $string, $matches );
+				$results['members'] = $matches[0];
+				set_transient( $transientName, $results, 4 * HOUR_IN_SECONDS );
+			}
 		}
-		$html_var = trim( $tmp_dom->saveHTML() ); 
-		$string   = preg_replace( '/<[^>]*>/', '', $html_var );
-		$string   = str_replace( '.', '', $string );
-		preg_match_all( '!\d+!', $string, $matches );
-		$results['members'] = $matches[0];
-
 		return $results;
 	}
 }

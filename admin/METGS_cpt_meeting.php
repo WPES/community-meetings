@@ -78,9 +78,9 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
         $inputObj->setInput(false, __('Meeting start', 'meetings'));
         $inputObj->showDatetime();
 
-        $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_id', $post->ID);
-        $inputObj->setInput(false, __('Meetup event', 'meetings'));
-        $inputObj->showMeetupEvent();
+        $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_url', $post->ID);
+        $inputObj->setInput(false, __('Meetup event URL', 'meetings'));
+        $inputObj->showUrl();
     }
 
     function save_metaboxes($post_id, $post){
@@ -88,8 +88,8 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
             $inputObj = new METGS_functions_inputs($this->prefix.'_startdatetime', $post_id);
             $inputObj->saveDatetime();
 
-            $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_id', $post_id);
-            $inputObj->saveMeetupEvent();
+            $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_url', $post_id);
+            $inputObj->save('url');
         }
     }
 
@@ -102,7 +102,6 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 			    echo '<div class="metgs-box">';
 			    $meetingObj = new METGS_meeting(get_queried_object_id());
 				$meetingObj->showInfo();
-
 			    echo '</div>';
 		    echo '</div>';
 
