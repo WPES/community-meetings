@@ -11,7 +11,7 @@ class METGS_place extends METGS_public_taxonomies
                 if(!is_tax()):
                     $nameWithUrl = $this->getNameWithURL();
 				    if(!empty($nameWithUrl)): ?>
-                        <div class="metgs-name"><?php echo esc_html($nameWithUrl); ?></div>
+                        <div class="metgs-name"><?php echo $nameWithUrl; ?></div>
 				        <?php
                     endif;
 				endif; ?>
