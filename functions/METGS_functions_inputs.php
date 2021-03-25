@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 /**
  * Generates standard inputs
  */
@@ -184,25 +184,25 @@ class METGS_functions_inputs {
 
 	function save( $type = 'text' ) {
 		if ( $this->saveExists() && ! isset( $this->saveValue ) ) {
-			$this->saveValue = $_POST[ $this->name ];
+			$savevalue = $_POST[ $this->name ];
 		}
 
 		if ( $type == 'textarea' ) {
-			$this->saveValue = sanitize_textarea_field( $this->saveValue );
+			$this->saveValue = sanitize_textarea_field( $savevalue );
 		} else if ( $type == 'radio' || $type == 'select' ) {
-			$this->saveValue = sanitize_key( $this->saveValue );
+			$this->saveValue = sanitize_key( $savevalue );
 		} else if ( $type == 'checkbox' ) {
-			if ( ! empty( $this->saveValue ) ) {
+			if ( ! empty( $savevalue ) ) {
 				$this->saveValue = 1;
 			} else {
 				$this->saveValue = 0;
 			}
 		} else if ( $type == 'richeditor' ) {
-			$this->saveValue = wp_kses_post( $this->saveValue );
+			$this->saveValue = wp_kses_post( $savevalue );
 		} else if ($type == 'url') {
-			$this->saveValue = esc_url_raw($this->saveValue);
+			$this->saveValue = esc_url_raw( $savevalue );
 		} else {
-			$this->saveValue = sanitize_text_field( $this->saveValue );
+			$this->saveValue = sanitize_text_field( $savevalue );
 		}
 
 		if ( isset( $this->saveValue ) ) {
@@ -237,7 +237,7 @@ class METGS_functions_inputs {
 	function showInputHTML( $type = 'text' ) {
 		if ( empty( $this->id ) ) {
 			//Won't work with lists
-			$this->id = 'input-' . $this->name;
+			$this->id = esc_attr('input-' . $this->name);
 		}
 
 		$this->showInputPreHTML($type);
@@ -263,9 +263,9 @@ class METGS_functions_inputs {
 			if ( $this->required ) {
 				$classes[] = 'form-required';
 			}
-			echo '<tr class="' . implode( ' ', $classes ) . '">';
+			echo '<tr class="' . esc_attr(implode( ' ', $classes )) . '">';
 		} else {
-			echo '<div class="' . implode( ' ', $classes ) . '">';
+			echo '<div class="' . esc_attr(implode( ' ', $classes )) . '">';
 		}
 	}
 	function showInputPostHTML() {
@@ -427,8 +427,8 @@ class METGS_functions_inputs {
             }
 		</style>
 
-		<div class="image<?php echo $imageclass; ?>" data-uploader_title="<?php _e('Select image', 'metgs');?>" data-uploader_button_text="<?php _e('Add', 'metgs');?>"></div>
-        <div class="close"><?php _e('Delete image', 'metgs'); ?></div>
+		<div class="image<?php echo esc_attr($imageclass); ?>" data-uploader_title="<?php esc_attr_e('Select image', 'metgs');?>" data-uploader_button_text="<?php esc_attr_e('Add', 'metgs');?>"></div>
+        <div class="close"><?php esc_html_e('Delete image', 'metgs'); ?></div>
 		<?php
 		$this->inputDefault('hidden');
 	}

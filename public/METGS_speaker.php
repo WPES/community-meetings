@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
 class METGS_speaker extends METGS_public_taxonomies
 {
@@ -11,12 +11,12 @@ class METGS_speaker extends METGS_public_taxonomies
 	            if(!is_tax()):
 		            $nameWithUrl = $this->getNameWithURL();
 		            if(!empty($nameWithUrl)): ?>
-                        <div class="metgs-name"><?php echo $nameWithUrl; ?></div>
+                        <div class="metgs-name"><?php echo esc_html($nameWithUrl); ?></div>
 		            <?php
 		            endif;
 	            endif; ?>
 	            <?php if(!empty($this->getDescription())): ?>
-                    <div class="metgs-description"><?php echo $this->getDescription(); ?></div>
+                    <div class="metgs-description"><?php echo esc_html($this->getDescription()); ?></div>
 	            <?php endif; ?>
 	            <?php echo $this->getSocialLinksHTML(); ?>
             </div>

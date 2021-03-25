@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 /**
  * Library for admin settings
  *
@@ -7,8 +7,6 @@
  * @copyright  2021 Closemarketing
  * @version    1.0
  */
-
-defined( 'ABSPATH' ) || exit;
 
 /**
  * Library for Admin Settings
@@ -117,7 +115,7 @@ class METGS_Settings_Page {
 	 * @return void
 	 */
 	public function metgs_section_info() {
-		echo sprintf( __( 'Put the connection API key settings in order to connect and sync products. You can go here <a href="%s" target="_blank">Meetings API</a>. ', 'meetings' ), 'https://www.meetup.com/' );
+		echo sprintf( esc_html__( 'Put the connection API key settings in order to connect and sync products. You can go here <a href="%s" target="_blank">Meetings API</a>. ', 'meetings' ), 'https://www.meetup.com/' );
 	}
 
 	/**

@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 /**
  * Helpers for humanTimeDiff
  */

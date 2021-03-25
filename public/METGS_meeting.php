@@ -1,4 +1,5 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
+
 class METGS_meeting extends METGS_public_cpt {
 
     public $cpt = METGS_CPT_MEETING;
@@ -13,15 +14,15 @@ class METGS_meeting extends METGS_public_cpt {
 	    echo '<div class="metgs-data">';
 	    $formattedDate = $this->getFormattedDate();
 	    if(!empty($formattedDate)){
-	    	echo '<div class="metgs-date">'.$formattedDate.'</div>';
+	    	echo '<div class="metgs-date">'.esc_html($formattedDate).'</div>';
 	    }
 	    $formattedDateDiff = $this->getFormattedDateDiff();
 	    if(!empty($formattedDateDiff)){
-		    echo '<div class="metgs-datediff">'.$formattedDateDiff.'</div>';
+		    echo '<div class="metgs-datediff">'.esc_html($formattedDateDiff).'</div>';
 	    }
 	    $attendees = $this->getMeetupAttendees();
 	    if(!empty($attendees)){
-		    echo '<div class="metgs-attendees">'.__('Attendees', 'meetings').': '.$attendees.'</div>';
+		    echo '<div class="metgs-attendees">'.__('Attendees', 'meetings').': '.esc_html($attendees).'</div>';
 	    }
 
 	    echo '</div>';
