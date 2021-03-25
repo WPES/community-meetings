@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: metsg\n"
-"POT-Creation-Date: 2021-03-04 19:59+0100\n"
-"PO-Revision-Date: 2021-03-04 20:00+0100\n"
+"POT-Creation-Date: 2021-03-25 19:34+0100\n"
+"PO-Revision-Date: 2021-03-25 19:34+0100\n"
 "Last-Translator: David <david@closemarketing.es>\n"
 "Language-Team: David <david@closemarketing.es>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -20,76 +20,99 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: admin/METGS_admin_taxonomies.php:61 admin/METGS_taxonomy_place.php:49
+#: admin/METGS_admin_taxonomies.php:61 admin/METGS_taxonomy_place.php:58
 msgid "Image"
 msgstr "Imagen"
 
-#: admin/METGS_cpt_meeting.php:24 admin/METGS_cpt_meeting.php:34
+#: admin/METGS_cpt_meeting.php:27 admin/METGS_cpt_meeting.php:37
 msgid "Meetups"
 msgstr "Meetups"
 
-#: admin/METGS_cpt_meeting.php:25
+#: admin/METGS_cpt_meeting.php:28
 msgid "Meetup"
 msgstr "Meetup"
 
-#: admin/METGS_cpt_meeting.php:26 admin/METGS_cpt_meeting.php:27
+#: admin/METGS_cpt_meeting.php:29 admin/METGS_cpt_meeting.php:30
 msgid "Add New Meetup"
 msgstr "Añadir nuevo Meetup"
 
-#: admin/METGS_cpt_meeting.php:28
+#: admin/METGS_cpt_meeting.php:31
 msgid "Edit Meetup"
 msgstr "Editar Meetup"
 
-#: admin/METGS_cpt_meeting.php:29
+#: admin/METGS_cpt_meeting.php:32
 msgid "New Meetup"
 msgstr "Nueva Meetup"
 
-#: admin/METGS_cpt_meeting.php:30
+#: admin/METGS_cpt_meeting.php:33
 msgid "View Meetup"
 msgstr "Ver Meetup"
 
-#: admin/METGS_cpt_meeting.php:31
+#: admin/METGS_cpt_meeting.php:34
 msgid "Search Meetups"
 msgstr "Buscar Meetups"
 
-#: admin/METGS_cpt_meeting.php:32
+#: admin/METGS_cpt_meeting.php:35
 msgid "Not found"
 msgstr "Extraviado"
 
-#: admin/METGS_cpt_meeting.php:33
+#: admin/METGS_cpt_meeting.php:36
 msgid "Not found in trash"
 msgstr "No encontrado en la papelera"
 
-#: admin/METGS_cpt_meeting.php:67
+#: admin/METGS_cpt_meeting.php:70
 msgid "Meeting details"
 msgstr "Detalles de la reunión"
 
-#: admin/METGS_cpt_meeting.php:75
+#: admin/METGS_cpt_meeting.php:78
 msgid "Meeting start"
 msgstr "Inicio de la Meetup"
 
-#: admin/METGS_cpt_meeting.php:79
-msgid "Meetup event"
+#: admin/METGS_cpt_meeting.php:82
+#, fuzzy
+#| msgid "Meetup event"
+msgid "Meetup event URL"
 msgstr "Evento de Meetup"
 
-#: admin/METGS_settings_page.php:39 admin/METGS_settings_page.php:40
-#: admin/METGS_settings_page.php:83
+#: admin/METGS_cpt_meeting.php:101
+#, fuzzy
+#| msgid "Meeting start"
+msgid "Meeting"
+msgstr "Inicio de la Meetup"
+
+#: admin/METGS_cpt_meeting.php:111 admin/METGS_taxonomy_speaker.php:21
+#: admin/METGS_taxonomy_speaker.php:31
+msgid "Speakers"
+msgstr "Ponentes"
+
+#: admin/METGS_cpt_meeting.php:123 admin/METGS_taxonomy_sponsor.php:21
+#: admin/METGS_taxonomy_sponsor.php:31
+msgid "Sponsors"
+msgstr "Patrocinadores"
+
+#: admin/METGS_cpt_meeting.php:135 admin/METGS_taxonomy_place.php:20
+#: admin/METGS_taxonomy_place.php:30
+msgid "Places"
+msgstr "Lugares"
+
+#: admin/METGS_settings_page.php:37 admin/METGS_settings_page.php:38
+#: admin/METGS_settings_page.php:82
 msgid "Settings"
 msgstr "Ajustes"
 
-#: admin/METGS_settings_page.php:56
+#: admin/METGS_settings_page.php:55
 msgid "Meetings Settings"
 msgstr "Configuración de Encuentros"
 
-#: admin/METGS_settings_page.php:66
+#: admin/METGS_settings_page.php:65
 msgid "Save settings"
 msgstr "Guardar ajustes"
 
-#: admin/METGS_settings_page.php:90
+#: admin/METGS_settings_page.php:89
 msgid "Meetup URL"
 msgstr "Meetup URL"
 
-#: admin/METGS_settings_page.php:119
+#: admin/METGS_settings_page.php:118
 #, php-format
 msgid ""
 "Put the connection API key settings in order to connect and sync products. "
@@ -98,10 +121,6 @@ msgstr ""
 "Coloca la configuración de la clave api de conexión para conectar y "
 "sincronizar los productos. Puede ir aquí <a href=\"%s\" target=\"_blank"
 "\">API de reuniones</a>. "
-
-#: admin/METGS_taxonomy_place.php:20 admin/METGS_taxonomy_place.php:30
-msgid "Places"
-msgstr "Lugares"
 
 #: admin/METGS_taxonomy_place.php:21
 msgid "Place"
@@ -139,126 +158,130 @@ msgstr "Añadir nueva ubicación"
 msgid "New place"
 msgstr "Nueva ubicación"
 
-#: admin/METGS_taxonomy_place.php:53 admin/METGS_taxonomy_speaker.php:48
-#: admin/METGS_taxonomy_sponsor.php:53
+#: admin/METGS_taxonomy_place.php:62 admin/METGS_taxonomy_speaker.php:59
+#: admin/METGS_taxonomy_sponsor.php:54
 msgid "Social links"
 msgstr "Enlaces sociales"
 
-#: admin/METGS_taxonomy_place.php:57
+#: admin/METGS_taxonomy_place.php:66
 msgid "Street"
 msgstr "Calle"
 
-#: admin/METGS_taxonomy_place.php:61
+#: admin/METGS_taxonomy_place.php:70
 msgid "Address details"
 msgstr "Detalles de dirección"
 
-#: admin/METGS_taxonomy_place.php:65
+#: admin/METGS_taxonomy_place.php:74
 msgid "Postal code"
 msgstr "Código Postal"
 
-#: admin/METGS_taxonomy_place.php:69
+#: admin/METGS_taxonomy_place.php:78
 msgid "City"
 msgstr "Ciudad"
 
-#: admin/METGS_taxonomy_place.php:73
+#: admin/METGS_taxonomy_place.php:82
 msgid "State"
 msgstr "Provincia"
 
-#: admin/METGS_taxonomy_place.php:77
+#: admin/METGS_taxonomy_place.php:86
 msgid "Country"
 msgstr "País"
 
-#: admin/METGS_taxonomy_speaker.php:20 admin/METGS_taxonomy_speaker.php:30
-msgid "Speakers"
-msgstr "Ponentes"
-
-#: admin/METGS_taxonomy_speaker.php:21
+#: admin/METGS_taxonomy_speaker.php:22
 msgid "Speaker"
 msgstr "Ponente"
 
-#: admin/METGS_taxonomy_speaker.php:22
+#: admin/METGS_taxonomy_speaker.php:23
 msgid "Search speakers"
 msgstr "Buscar ponentes"
 
-#: admin/METGS_taxonomy_speaker.php:23
+#: admin/METGS_taxonomy_speaker.php:24
 msgid "All speakers"
 msgstr "Todos los ponentes"
 
-#: admin/METGS_taxonomy_speaker.php:24
+#: admin/METGS_taxonomy_speaker.php:25
 msgid "Parent speaker"
 msgstr "Ponente superior"
 
-#: admin/METGS_taxonomy_speaker.php:25
+#: admin/METGS_taxonomy_speaker.php:26
 msgid "Parent speaker:"
 msgstr "Ponente superior:"
 
-#: admin/METGS_taxonomy_speaker.php:26
+#: admin/METGS_taxonomy_speaker.php:27
 msgid "Edit speaker"
 msgstr "Editar ponente"
 
-#: admin/METGS_taxonomy_speaker.php:27
+#: admin/METGS_taxonomy_speaker.php:28
 msgid "Update speaker"
 msgstr "Actualizar ponente"
 
-#: admin/METGS_taxonomy_speaker.php:28
+#: admin/METGS_taxonomy_speaker.php:29
 msgid "Add new speaker"
 msgstr "Añadir nuevo ponente"
 
-#: admin/METGS_taxonomy_speaker.php:29
+#: admin/METGS_taxonomy_speaker.php:30
 msgid "New speaker"
 msgstr "Nuevo ponente"
 
-#: admin/METGS_taxonomy_speaker.php:52
+#: admin/METGS_taxonomy_speaker.php:63
 msgid "Avatar"
 msgstr "Avatar"
 
-#: admin/METGS_taxonomy_sponsor.php:20 admin/METGS_taxonomy_sponsor.php:30
-msgid "Sponsors"
-msgstr "Patrocinadores"
-
-#: admin/METGS_taxonomy_sponsor.php:21
+#: admin/METGS_taxonomy_sponsor.php:22
 msgid "Sponsor"
 msgstr "Patrocinador"
 
-#: admin/METGS_taxonomy_sponsor.php:22
+#: admin/METGS_taxonomy_sponsor.php:23
 msgid "Search sponsor"
 msgstr "Buscar ponente"
 
-#: admin/METGS_taxonomy_sponsor.php:23
+#: admin/METGS_taxonomy_sponsor.php:24
 msgid "All sponsors"
 msgstr "Todos los patrocinadores"
 
-#: admin/METGS_taxonomy_sponsor.php:24
+#: admin/METGS_taxonomy_sponsor.php:25
 msgid "Parent sponsor"
 msgstr "Patrocinador de los padres"
 
-#: admin/METGS_taxonomy_sponsor.php:25
+#: admin/METGS_taxonomy_sponsor.php:26
 msgid "Parent sponsor:"
 msgstr "Patrocinador superior:"
 
-#: admin/METGS_taxonomy_sponsor.php:26
+#: admin/METGS_taxonomy_sponsor.php:27
 msgid "Edit sponsor"
 msgstr "Editar patrocinador"
 
-#: admin/METGS_taxonomy_sponsor.php:27
+#: admin/METGS_taxonomy_sponsor.php:28
 msgid "Update sponsor"
 msgstr "Actualizar patrocinador"
 
-#: admin/METGS_taxonomy_sponsor.php:28
+#: admin/METGS_taxonomy_sponsor.php:29
 msgid "Add new sponsor"
 msgstr "Añadir nuevo Patrocinador"
 
-#: admin/METGS_taxonomy_sponsor.php:29
+#: admin/METGS_taxonomy_sponsor.php:30
 msgid "New sponsor"
 msgstr "Nuevo patrocinador"
 
-#: admin/METGS_taxonomy_sponsor.php:49
+#: admin/METGS_taxonomy_sponsor.php:50
 msgid "Claim"
 msgstr "Eslogan"
 
-#: admin/METGS_taxonomy_sponsor.php:57
+#: admin/METGS_taxonomy_sponsor.php:58
 msgid "Logo"
 msgstr "Logo"
+
+#: functions/METGS_functions_humanTimeDiff.php:19
+#, php-format
+msgctxt "%s = human-readable time difference"
+msgid "%s ago"
+msgstr ""
+
+#: functions/METGS_functions_humanTimeDiff.php:21
+#, php-format
+msgctxt "%s = human-readable time difference"
+msgid "in %s"
+msgstr ""
 
 #: functions/METGS_functions_inputs.php:89
 msgid "date"
@@ -268,33 +291,72 @@ msgstr "fecha"
 msgid "time"
 msgstr "hora"
 
-#: functions/METGS_functions_inputs.php:139
+#: functions/METGS_functions_inputs.php:142
 msgid "url"
 msgstr "url"
 
-#: functions/METGS_functions_inputs.php:143
+#: functions/METGS_functions_inputs.php:146
 msgid "WordPress Profile"
 msgstr "Perfil WordPress"
 
-#: functions/METGS_functions_inputs.php:147
+#: functions/METGS_functions_inputs.php:150
 msgid "twitter"
 msgstr "twitter"
 
-#: functions/METGS_functions_inputs.php:151
+#: functions/METGS_functions_inputs.php:154
 msgid "linkedIn"
 msgstr "LinkedIn"
 
-#: functions/METGS_functions_inputs.php:425
+#: functions/METGS_functions_inputs.php:430
 msgid "Select image"
 msgstr "Seleccionar imagen"
 
-#: functions/METGS_functions_inputs.php:425
+#: functions/METGS_functions_inputs.php:430
 msgid "Add"
 msgstr "Añadir"
 
-#: functions/METGS_functions_inputs.php:426
+#: functions/METGS_functions_inputs.php:431
 msgid "Delete image"
 msgstr "Eliminar imagen"
+
+#: public/METGS_meeting.php:25
+msgid "Attendees"
+msgstr ""
+
+#. translators: %s: post date. */
+#. esc_html_x( 'updated on %s', 'post date', 'gsg-sports' ),
+#. $time_string
+#. );
+#: public/METGS_public_cpt.php:158
+#, fuzzy
+#| msgid "Update sponsor"
+msgid "updated on"
+msgstr "Actualizar patrocinador"
+
+#. translators: %s: post date.
+#: public/METGS_public_cpt.php:162
+#, php-format
+msgctxt "post date"
+msgid "published on %s"
+msgstr ""
+
+#: public/METGS_public_taxonomies.php:72
+msgid "Go to Twitter profile"
+msgstr ""
+
+#: public/METGS_public_taxonomies.php:75
+msgid "Go to LinkedIn page"
+msgstr ""
+
+#: public/METGS_public_taxonomies.php:78
+#, fuzzy
+#| msgid "WordPress Profile"
+msgid "Go to WordPress.org profile"
+msgstr "Perfil WordPress"
+
+#: public/METGS_public_taxonomies.php:81
+msgid "Go to URL"
+msgstr ""
 
 #~ msgid "Radio"
 #~ msgstr "Radio"
