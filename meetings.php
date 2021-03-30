@@ -1,7 +1,7 @@
 <?php defined('ABSPATH') or die('Not today.');
 /**
  * Plugin Name: Community meetings
- * Plugin URI: https://wpgranada.es/
+ * Plugin URI: https://github.com/WPES/meetings/
  * Description: Plugin that creates a meeting content to fill it up and relate with speakers, sponsors and places.
  * Author: WP Spain Community
  * Author URI: https://wpgranada.es/
