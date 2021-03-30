@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
 class METGS_public_taxonomies
 {
@@ -99,7 +99,7 @@ class METGS_public_taxonomies
         $html = '';
         $imgid = $this->getImageID();
         if(!empty($imgid)) {
-	        $html .= '<div class="metgs-'.esc_attr($imgclass).' metgs-term-img-wrapper metgs-img-' . $this->slug . '">';
+	        $html .= '<div class="metgs-'.esc_attr($imgclass).' metgs-term-img-wrapper metgs-img-' . esc_attr($this->slug) . '">';
 	        $html .= wp_get_attachment_image( $imgid, 'medium' );
 	        $html .= '</div>';
         }

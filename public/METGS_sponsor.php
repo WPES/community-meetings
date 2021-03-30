@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
 class METGS_sponsor extends METGS_public_taxonomies
 {
@@ -16,10 +16,10 @@ class METGS_sponsor extends METGS_public_taxonomies
 		            endif;
 	            endif; ?>
 	            <?php if(!empty($this->getClaim())): ?>
-                    <div class="metgs-claim"><?php echo $this->getClaim(); ?></div>
+                    <div class="metgs-claim"><?php echo esc_html($this->getClaim()); ?></div>
 	            <?php endif; ?>
 				<?php if(!empty($this->getDescription())): ?>
-                    <div class="metgs-description"><?php echo $this->getDescription(); ?></div>
+                    <div class="metgs-description"><?php echo esc_html($this->getDescription()); ?></div>
 				<?php endif; ?>
 				<?php echo $this->getSocialLinksHTML(); ?>
             </div>

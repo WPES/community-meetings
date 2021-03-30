@@ -1,5 +1,7 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
+
 class METGS_public_cpt {
+	public $prefix = METGS_PREFIX;
 
 	public function __construct($id=0)
 	{
@@ -97,6 +99,7 @@ class METGS_public_cpt {
     }
 
     function setValue($key, $value){
+	    $value = sanitize_text_field($value);
         if (!empty($this->id)) {
             return update_post_meta($this->id, $key, $value);
         }

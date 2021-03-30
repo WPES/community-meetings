@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
 class METGS_place extends METGS_public_taxonomies
 {
@@ -16,10 +16,10 @@ class METGS_place extends METGS_public_taxonomies
                     endif;
 				endif; ?>
 				<?php if(!empty($this->getFormattedAddress())): ?>
-                    <div class="metgs-address"><?php echo $this->getFormattedAddress(); ?></div>
+                    <div class="metgs-address"><?php echo esc_html($this->getFormattedAddress()); ?></div>
 				<?php endif; ?>
 				<?php if(!empty($this->getDescription())): ?>
-                    <div class="metgs-description"><?php echo $this->getDescription(); ?></div>
+                    <div class="metgs-description"><?php echo esc_html($this->getDescription()); ?></div>
 				<?php endif; ?>
 				<?php echo $this->getSocialLinksHTML(); ?>
             </div>
@@ -31,24 +31,24 @@ class METGS_place extends METGS_public_taxonomies
 	    $formattedAddress = '';
 	    $data=$this->getStreet();
 	    if(!empty($data)){
-		    $formattedAddress .= '<span class="metgs-address-street">'.$data.'</span>';
+		    $formattedAddress .= '<span class="metgs-address-street">'.esc_html($data).'</span>';
 	    }
 		$data=$this->getAddressDetails();
 		if(!empty($data)){
-			$formattedAddress .= '<span class="metgs-address-details">'.$data.'</span>';
+			$formattedAddress .= '<span class="metgs-address-details">'.esc_html($data).'</span>';
 		}
 		$locationArray=array();
 		$data=$this->getPostalCode();
 		if(!empty($data)){
-			$locationArray[] = '<span class="metgs-address-postalcode">'.$data.'</span>';
+			$locationArray[] = '<span class="metgs-address-postalcode">'.esc_html($data).'</span>';
 		}
 		$data=$this->getCity();
 		if(!empty($data)){
-			$locationArray[] = '<span class="metgs-address-city">'.$data.'</span>';
+			$locationArray[] = '<span class="metgs-address-city">'.esc_html($data).'</span>';
 		}
 		$data=$this->getState();
 		if(!empty($data)){
-			$locationArray[] = '<span class="metgs-address-state">'.$data.'</span>';
+			$locationArray[] = '<span class="metgs-address-state">'.esc_html($data).'</span>';
 		}
 		$formattedAddress .= implode(', ', $locationArray);
 		$data=$this->getCountryNativeName();
@@ -56,7 +56,7 @@ class METGS_place extends METGS_public_taxonomies
 		    if(!empty($locationArray)){
 			    $formattedAddress .= ' - ';
 		    }
-			$formattedAddress .= '<span class="metgs-address-country">'.$data.'</span>';
+			$formattedAddress .= '<span class="metgs-address-country">'.esc_html($data).'</span>';
 		}
 		return $formattedAddress;
 	}

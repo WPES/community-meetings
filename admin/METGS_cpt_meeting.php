@@ -3,7 +3,7 @@
 class METGS_cpt_meeting extends METGS_admin_cpt {
 
     public $cpt = METGS_CPT_MEETING;
-    public $rewrite = 'meetups';
+    public $rewrite = 'meeting';
     public $taxonomy_speaker = METGS_TAX_SPEAKER;
     public $taxonomy_sponsor = METGS_TAX_SPONSOR;
     public $taxonomy_place = METGS_TAX_PLACE;
@@ -78,9 +78,9 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
         $inputObj->setInput(false, __('Meeting start', 'meetings'));
         $inputObj->showDatetime();
 
-        $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_id', $post->ID);
-        $inputObj->setInput(false, __('Meetup event', 'meetings'));
-        $inputObj->showMeetupEvent();
+        $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_url', $post->ID);
+        $inputObj->setInput(false, __('Meetup event URL', 'meetings'));
+        $inputObj->showUrl();
     }
 
     function save_metaboxes($post_id, $post){
@@ -88,8 +88,8 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
             $inputObj = new METGS_functions_inputs($this->prefix.'_startdatetime', $post_id);
             $inputObj->saveDatetime();
 
-            $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_id', $post_id);
-            $inputObj->saveMeetupEvent();
+            $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_url', $post_id);
+            $inputObj->save('url');
         }
     }
 
@@ -97,6 +97,14 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
     	$additionalContent = '';
 	    if ( is_singular($this->cpt) && in_the_loop() && is_main_query() ) {
 	    	ob_start();
+		    echo '<div class="metgs-meetings">';
+		        echo '<div class="metgs-box-title">'.__('Meeting', 'metgs').'</div>';
+			    echo '<div class="metgs-box">';
+			    $meetingObj = new METGS_meeting(get_queried_object_id());
+				$meetingObj->showInfo();
+			    echo '</div>';
+		    echo '</div>';
+
 		    $speakers = get_the_terms(get_the_ID(), METGS_TAX_SPEAKER);
 		    if(!empty($speakers)){
 		    	echo '<div class="metgs-speakers">';

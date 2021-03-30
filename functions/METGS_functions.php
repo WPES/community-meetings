@@ -1,4 +1,4 @@
-<?php
+<?php defined('ABSPATH') or die('Not today.');
 
 class METGS_functions
 {
@@ -17,6 +17,7 @@ class METGS_functions
     private function includes() {
         require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions_countries.php';
         require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions_inputs.php';
+        require_once METGS_PLUGIN_FUNCTION_DIR . 'METGS_functions_humanTimeDiff.php';
     }
 
     private function inits(){
