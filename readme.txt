@@ -1,5 +1,5 @@
 === Community meetings ===
-Contributors: davidperez, webappdesign, frantorres, flewps
+Contributors: davidperez, flewps, webappdesign, frantorres
 Tags: meetings, community
 Requires at least: 4.6
 Tested up to: 5.7

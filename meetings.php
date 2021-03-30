@@ -33,14 +33,13 @@ final class METGS_init {
     public $version = '0.3';
 
     function __construct(){
-        add_action( 'plugins_loaded', array( $this, 'languages' ) );
+
     }
 
     public function load(){
         $this->pluginConstants();
         $this->contentConstants();
 
-        $this->languages();
         $this->includes();
         $this->inits();
     }
@@ -139,10 +138,6 @@ final class METGS_init {
 
         $functions = new METGS_functions();
         $functions->load();
-    }
-
-    function languages(){
-        load_plugin_textdomain( 'meetings', false, basename( dirname( __FILE__ ) ) . '/languages' );
     }
 
 }
