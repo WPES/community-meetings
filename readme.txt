@@ -39,4 +39,5 @@ WordPress installation and then activate the Plugin from Plugins page.
 *   First release.
 
 == Links ==
+*   [Github repository](https://github.com/WPES/meetings/)
 *   [WordPress Granada Community](https://wpgranada.es/)
