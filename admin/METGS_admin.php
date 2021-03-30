@@ -18,18 +18,12 @@ class METGS_admin{
         //CPTs register, and their configuration.
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin_cpt.php';
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_cpt_meeting.php';
-        require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_settings_page.php';
 
         //Taxonomies register, and their configuration.
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin_taxonomies.php';
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_taxonomy_speaker.php';
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_taxonomy_sponsor.php';
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_taxonomy_place.php';
-
-        //Custom options page on backend
-        //require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_admin_optionsPage.php';
-        //require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_optionsPage_meetings.php';
-
     }
 
     private function inits(){
@@ -42,9 +36,5 @@ class METGS_admin{
         $taxonomy_sponsor->initTaxonomy();
         $taxonomy_place = new METGS_taxonomy_place();
         $taxonomy_place->initTaxonomy();
-
-        /*$optionsPage = new METGS_optionsPage_meetings();
-        $optionsPage->init();*/
-        
     }
 }
