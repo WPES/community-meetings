@@ -20,6 +20,10 @@ class METGS_meeting extends METGS_public_cpt {
 	    if(!empty($formattedDateDiff)){
 		    echo '<div class="metgs-datediff">'.esc_html($formattedDateDiff).'</div>';
 	    }
+	    $meetupUrl = $this->getMeetupURL();
+	    if(!empty($meetupUrl)){
+		    echo '<div class="metgs-meetup-url"><a href="'.esc_url($meetupUrl).'">'.__('Meetup URL', 'meetings').'</a></div>';
+	    }
 	    $attendees = $this->getMeetupAttendees();
 	    if(!empty($attendees)){
 		    echo '<div class="metgs-attendees">'.__('Attendees', 'meetings').': '.esc_html($attendees).'</div>';
@@ -58,51 +62,59 @@ class METGS_meeting extends METGS_public_cpt {
     function getMeetupAttendees(){
     	$attendees=0;
 		$results=$this->gatherMeetupData();
-		if(!empty($results['attendees'])){
+		if(!empty($results['attendees']) && $results['attendees']!=-1){
 			$attendees=$results['attendees'];
 		}
 		return $attendees;
     }
 
 	private function gatherMeetupData() {
-		$results = array();
+		$results = array(
+			'attendees' => -1
+		);
 		$url = $this->getMeetupURL();
 		if ( ! empty( $url ) ) {
 			$url=trailingslashit($url);
 			$transientName = 'METGS_meeting-gatherMeetupData-'.md5($url);
 			if ( false === ( $results = get_transient( $transientName ) ) ) {
-				$dom     = new DOMDocument();
-				$context = stream_context_create(
-					array(
-						'http' => array(
-							'follow_location' => false,
-						),
-						'ssl'  => array(
-							'verify_peer'      => false,
-							'verify_peer_name' => false,
-						),
-					)
-				);
-				libxml_use_internal_errors( true );
-				libxml_set_streams_context( $context );
+				$response = wp_remote_get( $url );
+				$http_code = wp_remote_retrieve_response_code( $response );
+				if($http_code==200) {
+					$body = wp_remote_retrieve_body( $response );
+					$dom     = new DOMDocument();
+					$context = stream_context_create(
+						array(
+							'http' => array(
+								'follow_location' => false,
+							),
+							'ssl'  => array(
+								'verify_peer'      => false,
+								'verify_peer_name' => false,
+							),
+						)
+					);
+					libxml_use_internal_errors( true );
+					libxml_set_streams_context( $context );
 
-				$dom->loadHTMLFile( $url );
-				$finder    = new DomXPath( $dom );
-				$classname = "attendees-sample-total";
-				$nodes     = $finder->query( "//*[contains(@class, '$classname')]" );
-				$tmp_dom   = new DOMDocument();
-				foreach ( $nodes as $node ) {
-					$tmp_dom->appendChild( $tmp_dom->importNode( $node, true ) );
+					$dom->loadHTML( $body );
+					$finder    = new DomXPath( $dom );
+					$classname = "attendees-sample-total";
+					$nodes     = $finder->query( "//*[contains(@class, '$classname')]" );
+					$tmp_dom   = new DOMDocument();
+					foreach ( $nodes as $node ) {
+						$tmp_dom->appendChild( $tmp_dom->importNode( $node, true ) );
+					}
+					$html_var = trim( $tmp_dom->saveHTML() );
+					preg_match_all( '/\(([0-9]*)\)/', $html_var, $matches );
+
+					libxml_use_internal_errors( false );
+
+					if ( ! empty( $matches[1][0] ) ) {
+						$attendees = $matches[1][0];
+					}
+					$results['attendees'] = $attendees;
+					set_transient( $transientName, $results, 4 * HOUR_IN_SECONDS );
 				}
-				$html_var = trim( $tmp_dom->saveHTML() );
-				preg_match_all( '/\(([0-9]*)\)/', $html_var, $matches );
-				if(!empty($matches[1][0])){
-					$attendees=$matches[1][0];
-				} else {
-					$attendees=0;
-				}
-				$results['attendees'] = $attendees;
-				set_transient( $transientName, $results, 4 * HOUR_IN_SECONDS );
 			}
 		}
 		return $results;
