@@ -100,16 +100,18 @@ class METGS_functions_inputs {
 		$inputTime->showInputHTML( 'time' );
 	}
 	function saveDatetime() {
-		if ( array_key_exists( $this->name . '_date', $_POST ) ) {
-			$date = $_POST[ $this->name . '_date' ];
-			if ( array_key_exists( $this->name . '_time', $_POST ) ) {
-				$time = $_POST[ $this->name . '_time' ];
-			} else {
-				$time = '00:00';
-			}
-			$this->saveValue = strtotime( $date . ' ' . $time );
-			$this->save();
-		}
+	    if(is_array($_POST)) {
+		    if ( array_key_exists( $this->name . '_date', $_POST ) ) {
+			    $date = sanitize_text_field($_POST[ $this->name . '_date' ]);
+			    if ( array_key_exists( $this->name . '_time', $_POST ) ) {
+				    $time = sanitize_text_field($_POST[ $this->name . '_time' ]);
+			    } else {
+				    $time = '00:00';
+			    }
+			    $this->saveValue = strtotime( $date . ' ' . $time );
+			    $this->save();
+		    }
+	    }
 	}
 
 	function showMeetupEvent() {
@@ -184,25 +186,23 @@ class METGS_functions_inputs {
 
 	function save( $type = 'text' ) {
 		if ( $this->saveExists() && ! isset( $this->saveValue ) ) {
-			$savevalue = $_POST[ $this->name ];
-		}
-
-		if ( $type == 'textarea' ) {
-			$this->saveValue = sanitize_textarea_field( $savevalue );
-		} else if ( $type == 'radio' || $type == 'select' ) {
-			$this->saveValue = sanitize_key( $savevalue );
-		} else if ( $type == 'checkbox' ) {
-			if ( ! empty( $savevalue ) ) {
-				$this->saveValue = 1;
+			if ( $type == 'textarea' ) {
+				$this->saveValue = sanitize_textarea_field( $_POST[ $this->name ] );
+			} else if ( $type == 'radio' || $type == 'select' ) {
+				$this->saveValue = sanitize_key( $_POST[ $this->name ] );
+			} else if ( $type == 'checkbox' ) {
+				if ( ! empty( $_POST[ $this->name ] ) ) {
+					$this->saveValue = 1;
+				} else {
+					$this->saveValue = 0;
+				}
+			} else if ( $type == 'richeditor' ) {
+				$this->saveValue = wp_kses_post( $_POST[ $this->name ] );
+			} else if ( $type == 'url' ) {
+				$this->saveValue = esc_url_raw( $_POST[ $this->name ] );
 			} else {
-				$this->saveValue = 0;
+				$this->saveValue = sanitize_text_field( $_POST[ $this->name ] );
 			}
-		} else if ( $type == 'richeditor' ) {
-			$this->saveValue = wp_kses_post( $savevalue );
-		} else if ($type == 'url') {
-			$this->saveValue = esc_url_raw( $savevalue );
-		} else {
-			$this->saveValue = sanitize_text_field( $savevalue );
 		}
 
 		if ( isset( $this->saveValue ) ) {
@@ -437,6 +437,9 @@ class METGS_functions_inputs {
 	}
 
 	function saveExists() {
-		return array_key_exists( $this->name, $_POST );
+	    if(is_array($_POST)){
+	        return array_key_exists( $this->name, $_POST );
+	    }
+		return false;
 	}
 }
