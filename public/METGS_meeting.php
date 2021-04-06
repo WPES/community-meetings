@@ -31,6 +31,29 @@ class METGS_meeting extends METGS_public_cpt {
 
 	    echo '</div>';
 	    echo '</div>';
+	    $this->showSchema();
+    }
+
+    function showSchema(){
+	    $schema = array(
+		'@context' => 'https://schema.org',
+		'type' => 'Event',
+		'location' => array(
+			'@type' => 'Place',
+		),
+		'image' => get_the_post_thumbnail_url(),
+		'description' => get_the_excerpt(),
+		'name' => get_the_title(),
+	    );
+	    $formattedDate = $this->getFormattedDate();
+	    if(!empty($formattedDate)){
+		    $schema['startDate'] = $formattedDate;
+		    // "eventStatus": "https://schema.org/EventScheduled",
+	    }
+	    $output = wp_json_encode( $schema, JSON_UNESCAPED_SLASHES );
+	    echo '<script type="application/ld+json">';
+	    echo $output; // phpcs:ignore
+	    echo '</script>';
     }
 
     function getFormattedDate(){
