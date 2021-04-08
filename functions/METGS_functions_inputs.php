@@ -93,7 +93,7 @@ class METGS_functions_inputs {
 		$inputDate->showInputHTML( 'date' );
 
 		$inputTime = new METGS_functions_inputs( $this->name . '_time', $this->id );
-		$inputTime->setInput( false, $this->label . ' ' . __( 'time', 'meetings' ) );
+		$inputTime->setInput( false, $this->label . ' ' . __( 'time', 'community-meetings' ) );
 		if ( ! empty( $this->value ) ) {
 			$inputTime->value = date( 'H:m', $this->value );
 		}
@@ -145,15 +145,15 @@ class METGS_functions_inputs {
 		$input->showInputHTML( 'url' );
 
 		$input = new METGS_functions_inputs( $this->name . '_wpprofile', $this->id, $this->elementType );
-		$input->setInput( false, $this->label . ' ' . __( 'WordPress Profile', 'metgs' ) );
+		$input->setInput( false, $this->label . ' ' . __( 'WordPress Profile', 'community-meetings' ) );
 		$input->showInputHTML( 'url' );
 
 		$input = new METGS_functions_inputs( $this->name . '_twitter', $this->id, $this->elementType );
-		$input->setInput( false, $this->label . ' ' . __( 'twitter', 'metgs' ) );
+		$input->setInput( false, $this->label . ' ' . __( 'twitter', 'community-meetings' ) );
 		$input->showInputHTML( 'url' );
 
 		$input = new METGS_functions_inputs( $this->name . '_linkedin', $this->id, $this->elementType );
-		$input->setInput( false, $this->label . ' ' . __( 'linkedIn', 'metgs' ) );
+		$input->setInput( false, $this->label . ' ' . __( 'linkedIn', 'community-meetings' ) );
 		$input->showInputHTML( 'url' );
 	}
 	function saveSocialLinks() {
@@ -427,8 +427,8 @@ class METGS_functions_inputs {
             }
 		</style>
 
-		<div class="image<?php echo esc_attr($imageclass); ?>" data-uploader_title="<?php esc_attr_e('Select image', 'metgs');?>" data-uploader_button_text="<?php esc_attr_e('Add', 'metgs');?>"></div>
-        <div class="close"><?php esc_html_e('Delete image', 'metgs'); ?></div>
+		<div class="image<?php echo esc_attr($imageclass); ?>" data-uploader_title="<?php esc_attr_e('Select image', 'community-meetings');?>" data-uploader_button_text="<?php esc_attr_e('Add', 'community-meetings');?>"></div>
+        <div class="close"><?php esc_html_e('Delete image', 'community-meetings'); ?></div>
 		<?php
 		$this->inputDefault('hidden');
 	}

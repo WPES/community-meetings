@@ -16,9 +16,9 @@ class METGS_functions_humanTimeDiff
         if(!empty($date)) {
             $humanTimeDiff = human_time_diff($date, $now);
             if ($date < $now) {
-                $humanTimeDiffTxt = sprintf(_x('%s ago', '%s = human-readable time difference', 'meetings'), $humanTimeDiff);
+                $humanTimeDiffTxt = sprintf(_x('%s ago', '%s = human-readable time difference', 'community-meetings'), $humanTimeDiff);
             } else {
-                $humanTimeDiffTxt = sprintf(_x('in %s', '%s = human-readable time difference', 'meetings'), $humanTimeDiff);
+                $humanTimeDiffTxt = sprintf(_x('in %s', '%s = human-readable time difference', 'community-meetings'), $humanTimeDiff);
             }
         }
         return $humanTimeDiffTxt;

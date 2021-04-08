@@ -18,17 +18,17 @@ class METGS_taxonomy_sponsor extends METGS_admin_taxonomies {
 	function taxonomy_register() {
 
 		$labels = array(
-			'name'              => __( 'Sponsors', 'meetings' ),
-			'singular_name'     => __( 'Sponsor', 'meetings' ),
-			'search_items'      => __( 'Search sponsor', 'meetings' ),
-			'all_items'         => __( 'All sponsors', 'meetings' ),
-			'parent_item'       => __( 'Parent sponsor', 'meetings' ),
-			'parent_item_colon' => __( 'Parent sponsor:', 'meetings' ),
-			'edit_item'         => __( 'Edit sponsor', 'meetings' ),
-			'update_item'       => __( 'Update sponsor', 'meetings' ),
-			'add_new_item'      => __( 'Add new sponsor', 'meetings' ),
-			'new_item_name'     => __( 'New sponsor', 'meetings' ),
-			'menu_name'         => __( 'Sponsors', 'meetings' ),
+			'name'              => __( 'Sponsors', 'community-meetings' ),
+			'singular_name'     => __( 'Sponsor', 'community-meetings' ),
+			'search_items'      => __( 'Search sponsor', 'community-meetings' ),
+			'all_items'         => __( 'All sponsors', 'community-meetings' ),
+			'parent_item'       => __( 'Parent sponsor', 'community-meetings' ),
+			'parent_item_colon' => __( 'Parent sponsor:', 'community-meetings' ),
+			'edit_item'         => __( 'Edit sponsor', 'community-meetings' ),
+			'update_item'       => __( 'Update sponsor', 'community-meetings' ),
+			'add_new_item'      => __( 'Add new sponsor', 'community-meetings' ),
+			'new_item_name'     => __( 'New sponsor', 'community-meetings' ),
+			'menu_name'         => __( 'Sponsors', 'community-meetings' ),
 		);
 
 		$rewrite = array(
@@ -47,15 +47,15 @@ class METGS_taxonomy_sponsor extends METGS_admin_taxonomies {
 
 	function add_metaboxes($taxonomy, $term_id=0){
 		$inputObj = new METGS_functions_inputs($this->prefix.'_claim', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('Claim', 'meetings'));
+		$inputObj->setInput(false, __('Claim', 'community-meetings'));
 		$inputObj->showText();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_social_links', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('Social links', 'meetings'));
+		$inputObj->setInput(false, __('Social links', 'community-meetings'));
 		$inputObj->showSocialLinks();
 
 		$inputObj = new METGS_functions_inputs($this->prefix.'_image', $term_id, 'taxonomy');
-		$inputObj->setInput(false, __('Logo', 'meetings'));
+		$inputObj->setInput(false, __('Logo', 'community-meetings'));
 		$inputObj->showImage();
 	}
 

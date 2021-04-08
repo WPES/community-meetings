@@ -22,11 +22,11 @@ class METGS_meeting extends METGS_public_cpt {
 	    }
 	    $meetupUrl = $this->getMeetupURL();
 	    if(!empty($meetupUrl)){
-		    echo '<div class="metgs-meetup-url"><a href="'.esc_url($meetupUrl).'">'.__('Meetup URL', 'meetings').'</a></div>';
+		    echo '<div class="metgs-meetup-url"><a href="'.esc_url($meetupUrl).'">'.__('Meetup URL', 'community-meetings').'</a></div>';
 	    }
 	    $attendees = $this->getMeetupAttendees();
 	    if(!empty($attendees)){
-		    echo '<div class="metgs-attendees">'.__('Attendees', 'meetings').': '.esc_html($attendees).'</div>';
+		    echo '<div class="metgs-attendees">'.__('Attendees', 'community-meetings').': '.esc_html($attendees).'</div>';
 	    }
 
 	    echo '</div>';
