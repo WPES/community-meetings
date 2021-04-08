@@ -1,3 +1,10 @@
+.metgs-archive-links {
+  text-align: center;
+}
+.metgs-archive-links a {
+  font-size: 80%;
+}
+
 .metgs-box {
   border: 1px solid black;
 }

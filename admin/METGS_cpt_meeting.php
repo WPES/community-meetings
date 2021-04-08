@@ -9,11 +9,12 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
     public $taxonomy_place = METGS_TAX_PLACE;
 
     function __construct(){
-
+		parent::__construct();
     }
 
     public function initCPT(){
 	    add_action( 'pre_get_posts', array($this, 'pre_get_posts'), 1 );
+	    add_filter( 'get_the_post_type_description', array($this, 'archive_description_add_links'));
         add_action('init', array($this, 'cpt_register'));
         add_action('add_meta_boxes', array($this, 'add_metaboxes'));
         add_action('save_post', array($this, 'save_metaboxes'), 10, 2);
@@ -24,7 +25,7 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 
 	function pre_get_posts( $query ) {
 		if ( ! is_admin() && $query->is_main_query() && is_post_type_archive( $this->cpt ) ) {
-			//$query->set( 'posts_per_page', 2 );
+			$query->set( 'posts_per_page', 2 );
 
 			if(!empty($_GET['metgs_historic']) && $_GET['metgs_historic']==1){
 				$compare = '<=';
@@ -51,6 +52,38 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 
 			return;
 		}
+	}
+
+	function archive_description_add_links($description){
+		$value=1;
+		$scheduled=true;
+		if(!empty($_GET['metgs_historic']) && $_GET['metgs_historic']==1){
+			$value=0;
+			$scheduled=false;
+		}
+		$url = add_query_arg('metgs_historic', $value);
+
+		$html='';
+		$html .= '<div class="metgs-archive-links">';
+		if ( ! $scheduled ) {
+			$html .= '<div class="metgs-archive-link-previous">';
+			$html .= __( 'Previous meetings', 'community-meetings' );
+			$html .= '</div>';
+			$html .= '<div class="metgs-archive-link-scheduled">';
+			$html .= '<a href="' . $url . '">' . __( 'Go to scheduled meetings', 'community-meetings' ) . '</a>';
+			$html .= '</div>';
+		} else {
+			$html .= '<div class="metgs-archive-link-scheduled">';
+			$html .= __( 'Scheduled meetings', 'community-meetings' );
+			$html .= '</div>';
+			$html .= '<div class="metgs-archive-link-previous">';
+			$html .= '<a href="' . $url . '">' . __( 'Go to previous meetings', 'community-meetings' ) . '</a>';
+			$html .= '</div>';
+		}
+		$html .= '</div>';
+
+		$description.=$html;
+    	return $description;
 	}
 
     function cpt_register(){
