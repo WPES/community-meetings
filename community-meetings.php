@@ -6,7 +6,7 @@
  * Author: WP Spain Community
  * Author URI: https://wpgranada.es/
  * Version: 0.3
- * Text Domain: meetings
+ * Text Domain: community-meetings
  * Domain Path: /languages
  * License: GNU General Public License version 3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html

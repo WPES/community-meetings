@@ -69,16 +69,16 @@ class METGS_public_taxonomies
 			foreach ( $socialLinksArray as $service => $link ) {
 				switch ($service){
 					case 'twitter':
-						$text = __('Go to Twitter profile', 'metgs');
+						$text = __('Go to Twitter profile', 'community-meetings');
 						break;
 					case 'linkedin':
-						$text = __('Go to LinkedIn page', 'metgs');
+						$text = __('Go to LinkedIn page', 'community-meetings');
 						break;
 					case 'wpprofile':
-						$text = __('Go to WordPress.org profile', 'metgs');
+						$text = __('Go to WordPress.org profile', 'community-meetings');
 						break;
 					default:
-						$text = __('Go to URL', 'metgs');
+						$text = __('Go to URL', 'community-meetings');
 				}
 				$html .= '<li class="metgs-link-'.esc_attr($service).'"><a href="'.esc_url($link).'" target="_blank" title="'.esc_attr($text).'"></a></li>';
 			}

@@ -56,17 +56,17 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
     function cpt_register(){
 
         $labels = array(
-            'name'               => __( 'Meetups', 'meetings' ),
-            'singular_name'      => __( 'Meetup', 'meetings' ),
-            'add_new'            => __( 'Add New Meetup', 'meetings' ),
-            'add_new_item'       => __( 'Add New Meetup', 'meetings' ),
-            'edit_item'          => __( 'Edit Meetup', 'meetings' ),
-            'new_item'           => __( 'New Meetup', 'meetings' ),
-            'view_item'          => __( 'View Meetup', 'meetings' ),
-            'search_items'       => __( 'Search Meetups', 'meetings' ),
-            'not_found'          => __( 'Not found', 'meetings' ),
-            'not_found_in_trash' => __( 'Not found in trash', 'meetings' ),
-            'menu_name'          => __( 'Meetups', 'meetings' ),
+            'name'               => __( 'Meetups', 'community-meetings' ),
+            'singular_name'      => __( 'Meetup', 'community-meetings' ),
+            'add_new'            => __( 'Add New Meetup', 'community-meetings' ),
+            'add_new_item'       => __( 'Add New Meetup', 'community-meetings' ),
+            'edit_item'          => __( 'Edit Meetup', 'community-meetings' ),
+            'new_item'           => __( 'New Meetup', 'community-meetings' ),
+            'view_item'          => __( 'View Meetup', 'community-meetings' ),
+            'search_items'       => __( 'Search Meetups', 'community-meetings' ),
+            'not_found'          => __( 'Not found', 'community-meetings' ),
+            'not_found_in_trash' => __( 'Not found in trash', 'community-meetings' ),
+            'menu_name'          => __( 'Meetups', 'community-meetings' ),
         );
 
         $rewrite = array(
@@ -99,7 +99,7 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
     function add_metaboxes(){
             add_meta_box(
                 $this->prefix.'_meetingdetails',
-                __('Meeting details','meetings'),
+                __('Meeting details','community-meetings'),
                 array($this, 'show_metaboxes_meetingdetails'),  // Content callback, must be of type callable
                 $this->cpt                            // Post type
             );
@@ -107,11 +107,11 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 
     function show_metaboxes_meetingdetails( $post ) {
         $inputObj = new METGS_functions_inputs($this->prefix.'_startdatetime', $post->ID);
-        $inputObj->setInput(false, __('Meeting start', 'meetings'));
+        $inputObj->setInput(false, __('Meeting start', 'community-meetings'));
         $inputObj->showDatetime();
 
         $inputObj = new METGS_functions_inputs($this->prefix.'_meetup_event_url', $post->ID);
-        $inputObj->setInput(false, __('Meetup event URL', 'meetings'));
+        $inputObj->setInput(false, __('Meetup event URL', 'community-meetings'));
         $inputObj->showUrl();
     }
 
@@ -130,7 +130,7 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 	    if ( is_singular($this->cpt) && in_the_loop() && is_main_query() ) {
 	    	ob_start();
 		    echo '<div class="metgs-meetings">';
-		        echo '<div class="metgs-box-title">'.__('Meeting', 'metgs').'</div>';
+		        echo '<div class="metgs-box-title">'.__('Meeting', 'community-meetings').'</div>';
 			    echo '<div class="metgs-box">';
 			    $meetingObj = new METGS_meeting(get_queried_object_id());
 				$meetingObj->showInfo();
@@ -140,7 +140,7 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 		    $speakers = get_the_terms(get_the_ID(), METGS_TAX_SPEAKER);
 		    if(!empty($speakers)){
 		    	echo '<div class="metgs-speakers">';
-		    	echo '<div class="metgs-box-title">'.__('Speakers', 'metgs').'</div>';
+		    	echo '<div class="metgs-box-title">'.__('Speakers', 'community-meetings').'</div>';
 		    	echo '<div class="metgs-box">';
 		    	foreach ($speakers as $speaker){
 				    $speakerObj = new METGS_speaker($speaker);
@@ -152,7 +152,7 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 		    $sponsors = get_the_terms(get_the_ID(), METGS_TAX_SPONSOR);
 		    if(!empty($sponsors)){
 			    echo '<div class="metgs-sponsors">';
-			    echo '<div class="metgs-box-title">'.__('Sponsors', 'metgs').'</div>';
+			    echo '<div class="metgs-box-title">'.__('Sponsors', 'community-meetings').'</div>';
 			    echo '<div class="metgs-box">';
 			    foreach ($sponsors as $sponsor){
 				    $sponsorObj = new METGS_sponsor($sponsor);
@@ -164,7 +164,7 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
 		    $places = get_the_terms(get_the_ID(), METGS_TAX_PLACE);
 		    if(!empty($places)){
 			    echo '<div class="metgs-places">';
-			    echo '<div class="metgs-box-title">'.__('Places', 'metgs').'</div>';
+			    echo '<div class="metgs-box-title">'.__('Places', 'community-meetings').'</div>';
 			    echo '<div class="metgs-box">';
 			    foreach ($places as $place){
 				    $placeObj = new METGS_place($place);
