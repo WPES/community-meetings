@@ -5,7 +5,7 @@
  * Description: Plugin that creates a meeting content to fill it up and relate with speakers, sponsors and places.
  * Author: WP Spain Community
  * Author URI: https://wpgranada.es/
- * Version: 0.3
+ * Version: 0.4
  * Text Domain: community-meetings
  * Domain Path: /languages
  * License: GNU General Public License version 3.0
@@ -30,7 +30,7 @@ along with This program. If not, see https://www.gnu.org/licenses/gpl-3.0.txt.
 final class METGS_init {
 
     public $plugin_name = 'Community meetings';
-    public $version = '0.3';
+    public $version = '0.4';
 
     function __construct(){
 
