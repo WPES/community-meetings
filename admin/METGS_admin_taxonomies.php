@@ -58,7 +58,7 @@ class METGS_admin_taxonomies{
     }
 
     function add_image_to_taxonomy_column($columns){
-        $columns['_metgs_image'] = __('Image','meetings');
+        $columns['_metgs_image'] = __('Image','community-meetings');
         return $columns;
     }
 

@@ -1,12 +1,12 @@
 <?php defined('ABSPATH') or die('Not today.');
 /**
  * Plugin Name: Community meetings
- * Plugin URI: https://wpgranada.es/
+ * Plugin URI: https://github.com/WPES/meetings/
  * Description: Plugin that creates a meeting content to fill it up and relate with speakers, sponsors and places.
  * Author: WP Spain Community
  * Author URI: https://wpgranada.es/
- * Version: 0.3
- * Text Domain: meetings
+ * Version: 0.4.1
+ * Text Domain: community-meetings
  * Domain Path: /languages
  * License: GNU General Public License version 3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -30,17 +30,16 @@ along with This program. If not, see https://www.gnu.org/licenses/gpl-3.0.txt.
 final class METGS_init {
 
     public $plugin_name = 'Community meetings';
-    public $version = '0.3';
+    public $version = '0.4.1';
 
     function __construct(){
-        add_action( 'plugins_loaded', array( $this, 'languages' ) );
+
     }
 
     public function load(){
         $this->pluginConstants();
         $this->contentConstants();
 
-        $this->languages();
         $this->includes();
         $this->inits();
     }
@@ -139,10 +138,6 @@ final class METGS_init {
 
         $functions = new METGS_functions();
         $functions->load();
-    }
-
-    function languages(){
-        load_plugin_textdomain( 'meetings', false, basename( dirname( __FILE__ ) ) . '/languages' );
     }
 
 }
