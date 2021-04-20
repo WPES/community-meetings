@@ -18,19 +18,24 @@ class METGS_Settings_Page {
 	 * @var array
 	 */
 	private $meetup_settings;
-	/**
-	 * Construct of class
-	 */
+
+	public $prefix = METGS_PREFIX;
+
 	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
-		add_action( 'admin_init', array( $this, 'page_init' ) );
 	}
 
-	/**
-	 * Adds plugin page.
-	 *
-	 * @return void
-	 */
+	function get_options(){
+	    if(empty($this->meetup_settings)) {
+		    $this->meetup_settings = get_option( $this->prefix . '_options' );
+	    }
+	}
+
+	function init(){
+		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
+		add_action( 'admin_init', array( $this, 'page_init' ) );
+		add_action( 'update_option', array( $this, 'updated_archive_page_view_option' ), 10, 3 ); //Flush rewrite rules when archive_page_view_option is updated.
+    }
+
 	public function add_plugin_page() {
 		add_submenu_page(
 			'edit.php?post_type=metgs_meeting',
@@ -42,13 +47,7 @@ class METGS_Settings_Page {
 		);
 	}
 
-	/**
-	 * Create admin page.
-	 *
-	 * @return void
-	 */
 	public function create_admin_page() {
-		$this->meetup_settings = get_option( 'meetings' );
 		$results = $this->get_meetup_options( $this->meetup_settings['meetup_url'] );
 		?>
 		<div class="wrap">
@@ -75,7 +74,22 @@ class METGS_Settings_Page {
 	 * @return void
 	 */
 	public function page_init() {
-		register_setting( 'meetings_settings', 'meetings', array( $this, 'sanitize_fields' ) );
+		register_setting( 'meetings_settings', $this->prefix.'_options', array( $this, 'sanitize_fields' ) );
+
+		add_settings_section(
+			'metgs_setting_view',
+			__( 'View', 'meetings' ),
+			'',
+			'meetings-admin'
+		);
+
+		add_settings_field(
+			'archive_page_view_option',
+			__( 'Archive page type', 'meetings' ),
+			array( $this, 'meetup_field_archive_page_view_option' ),
+			'meetings-admin',
+			'metgs_setting_view'
+		);
 
 		add_settings_section(
 			'metgs_setting_section',
@@ -102,6 +116,10 @@ class METGS_Settings_Page {
 	public function sanitize_fields( $input ) {
 		$sanitary_values = array();
 
+		if ( isset( $input['archive_page_view_option'] ) ) {
+			$sanitary_values['archive_page_view_option'] = sanitize_key( $input['archive_page_view_option'] );
+		}
+
 		if ( isset( $input['meetup_url'] ) ) {
 			$sanitary_values['meetup_url'] = sanitize_text_field( $input['meetup_url'] );
 		}
@@ -109,22 +127,57 @@ class METGS_Settings_Page {
 		return $sanitary_values;
 	}
 
-	/**
-	 * Info for holded automate section.
-	 *
-	 * @return void
-	 */
+	function get_archive_page_view_option(){
+	    $this->get_options();
+		if(isset( $this->meetup_settings['archive_page_view_option'])){
+			return $this->meetup_settings['archive_page_view_option'];
+		}
+		return 'pre_get_posts';
+    }
+
+    function updated_archive_page_view_option($option, $old_value, $value){
+	    if($option==$this->prefix . '_options'){
+		    if($old_value['archive_page_view_option']!=$value['archive_page_view_option']){
+			    update_option( 'metgs_flush_rewrite_rules_flag', true, true );
+		    }
+	    }
+    }
+
+	public function meetup_field_archive_page_view_option() {
+		$options = array(
+			'pre_get_posts' => __('Show following events in order.', 'meetings'),
+			'archive' => __('Show default archive page.', 'meetings'),
+			'no_archive' => __('Don\'t show archive page.', 'meetings'),
+			'template' => __('Show community meetings template.', 'meetings'),
+		);
+
+		echo '<select name="'.$this->prefix.'_options[archive_page_view_option]'.'" id="metgs_archive_page_view_option">';
+		if ( ! empty( $options ) ) {
+			foreach ( $options as $optionKey => $optionName ) {
+				$selected = '';
+				if ( $optionKey == $this->get_archive_page_view_option() ) {
+					$selected = ' selected';
+				}
+				echo '<option value="' . esc_attr($optionKey) . '"' . $selected . '>' . esc_html($optionName) . '</option>';
+			}
+		}
+		echo '</select>';
+	}
+
 	public function metgs_section_info() {
 		echo sprintf( esc_html__( 'Put the connection API key settings in order to connect and sync products. You can go here <a href="%s" target="_blank">Meetings API</a>. ', 'meetings' ), 'https://www.meetup.com/' );
 	}
 
-	/**
-	 * Metgs URL Callback
-	 *
-	 * @return void
-	 */
+	function get_meetup_url(){
+		$this->get_options();
+		if(isset( $this->meetup_settings['meetup_url'])){
+			return $this->meetup_settings['meetup_url'];
+		}
+		return '';
+	}
+
 	public function meetup_url_callback() {
-		printf( '<input class="regular-text" type="text" name="meetings[meetup_url]" id="meetup_url" value="%s">', ( isset( $this->meetup_settings['meetup_url'] ) ? esc_attr( $this->meetup_settings['meetup_url'] ) : '' ) );
+		printf( '<input class="regular-text" type="text" name="'.$this->prefix.'_options[meetup_url]" id="meetup_url" value="%s">', esc_attr( $this->get_meetup_url()));
 	}
 
 	private function get_meetup_options( $url ) {
@@ -168,4 +221,5 @@ class METGS_Settings_Page {
 }
 if ( is_admin() ) {
 	$meetings_admin = new METGS_Settings_Page();
+	$meetings_admin->init();
 }

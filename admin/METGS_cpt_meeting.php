@@ -22,6 +22,8 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
     }
 
     function cpt_register(){
+    	$settings = new METGS_Settings_Page();
+    	$archivePageViewOption = $settings->get_archive_page_view_option();
 
         $labels = array(
             'name'               => __( 'Meetups', 'community-meetings' ),
@@ -60,8 +62,11 @@ class METGS_cpt_meeting extends METGS_admin_cpt {
             'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
         );
 
+        if($archivePageViewOption=='no_archive'){
+	        $args['has_archive'] = false;
+        }
+
         register_post_type($this->cpt, $args);
-        
     }
 
     function add_metaboxes(){
