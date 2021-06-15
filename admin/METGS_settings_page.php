@@ -91,7 +91,9 @@ class METGS_Settings_Page {
 			'metgs_setting_view'
 		);
 
-		add_settings_section(
+		/*
+		 * TODO connect with API
+		 * add_settings_section(
 			'metgs_setting_section',
 			__( 'Settings', 'meetings' ),
 			array( $this, 'metgs_section_info' ),
@@ -104,7 +106,7 @@ class METGS_Settings_Page {
 			array( $this, 'meetup_url_callback' ),
 			'meetings-admin',
 			'metgs_setting_section'
-		);
+		);*/
 	}
 
 	/**

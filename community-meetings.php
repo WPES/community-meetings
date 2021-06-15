@@ -76,6 +76,11 @@ final class METGS_init {
             define( 'METGS_PLUGIN_FUNCTION_DIR', METGS_PLUGIN_DIR.'functions/' );
         }
 
+	    // Plugin Templates Path
+	    if ( ! defined( 'METGS_PLUGIN_TEMPLATES_DIR' ) ) {
+		    define( 'METGS_PLUGIN_TEMPLATES_DIR', METGS_PLUGIN_DIR.'templates/' );
+	    }
+
         // Plugin Folder URL
         if ( ! defined( 'METGS_PLUGIN_URL' ) ) {
             define( 'METGS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
