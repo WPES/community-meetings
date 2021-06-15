@@ -24,6 +24,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 WordPress installation and then activate the Plugin from Plugins page.
 
 == Changelog ==
+= 0.5 =
+*   Ability of select template for archive page.
+
 = 0.4.1 =
 *   Published version.
 
