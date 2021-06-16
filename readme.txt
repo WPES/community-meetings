@@ -3,7 +3,7 @@ Contributors: davidperez, flewps, webappdesign, frantorres
 Tags: meetings, community
 Requires at least: 4.6
 Tested up to: 5.7
-Stable tag: 0.4.1
+Stable tag: 0.5
 Requires PHP: 7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
