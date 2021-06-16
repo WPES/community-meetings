@@ -24,6 +24,9 @@ class METGS_admin{
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_taxonomy_speaker.php';
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_taxonomy_sponsor.php';
         require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_taxonomy_place.php';
+
+        //Settings page
+	    require_once METGS_PLUGIN_ADMIN_DIR . 'METGS_settings_page.php';
     }
 
     private function inits(){
